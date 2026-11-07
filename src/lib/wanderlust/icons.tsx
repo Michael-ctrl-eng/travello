@@ -183,6 +183,20 @@ export function ChevronRightIcon({ size = 20, ...props }: IconProps) {
   );
 }
 
+export function ChevronDownIcon({ size = 20, ...props }: IconProps) {
+  return (
+    <Svg size={size} {...props}>
+      <path
+        d="m5.5 9.4 6.5 6.5 6.5-6.5"
+        stroke="currentColor"
+        strokeWidth="2.1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </Svg>
+  );
+}
+
 export function MenuIcon({ size = 20, ...props }: IconProps) {
   return (
     <Svg size={size} {...props}>

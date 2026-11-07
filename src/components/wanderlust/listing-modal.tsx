@@ -19,6 +19,9 @@ interface ListingModalProps {
   listing: Listing;
   currency: CurrencyCode;
   showTax: boolean;
+  initialCheckIn?: string;
+  initialCheckOut?: string;
+  initialGuests?: number;
   onClose: () => void;
 }
 
@@ -32,11 +35,20 @@ export default function ListingModal({
   listing,
   currency,
   showTax,
+  initialCheckIn,
+  initialCheckOut,
+  initialGuests,
   onClose,
 }: ListingModalProps) {
-  const [checkIn, setCheckIn] = useState(() => isoDay(7));
-  const [checkOut, setCheckOut] = useState(() => isoDay(10));
-  const [guests, setGuests] = useState(2);
+  const [checkIn, setCheckIn] = useState(() =>
+    initialCheckIn ? initialCheckIn : isoDay(7),
+  );
+  const [checkOut, setCheckOut] = useState(() =>
+    initialCheckOut ? initialCheckOut : isoDay(10),
+  );
+  const [guests, setGuests] = useState(() =>
+    initialGuests ? Math.min(8, Math.max(1, initialGuests)) : 2,
+  );
   const [status, setStatus] = useState<"form" | "done">("form");
 
   const today = useMemo(() => isoDay(0), []);
@@ -67,6 +79,7 @@ export default function ListingModal({
   const vat = showTax ? Math.round(subtotal * 0.14) : 0;
   const total = subtotal + vat;
   const nightsLabel = nights === 1 ? "1 night" : `${nights} nights`;
+  /* Guest count never enters the price — the total is per stay, not per guest. */
 
   return (
     <div
@@ -181,6 +194,10 @@ export default function ListingModal({
                   </button>
                 </span>
               </div>
+              <p className="wl-guests-note">
+                Add up to 8 guests at no extra cost — the price is per stay,
+                not per guest.
+              </p>
             </div>
 
             <div className="wl-breakdown">
@@ -198,8 +215,11 @@ export default function ListingModal({
               )}
               <div className="wl-bd-row wl-bd-total">
                 <span>Total</span>
-                <span>{formatPrice(total, currency)}</span>
+                <span aria-live="polite">{formatPrice(total, currency)}</span>
               </div>
+              <p className="wl-bd-note wl-bd-note--flat">
+                Same total for 1–8 guests · {guests} travelling
+              </p>
               <p className="wl-bd-note">
                 {convert(listing.price, currency) !== listing.price
                   ? `Charged in USD · shown in ${currency}`

@@ -3,12 +3,24 @@
 import { useMemo, useState } from "react";
 import Navbar from "@/components/wanderlust/navbar";
 import Hero from "@/components/wanderlust/hero";
+import {
+  Collections,
+  Excellence,
+  Sanctuary,
+  TrustStrip,
+} from "@/components/wanderlust/landing-sections";
 import FilterRail from "@/components/wanderlust/filter-rail";
 import ListingGrid from "@/components/wanderlust/listing-grid";
 import ListingModal from "@/components/wanderlust/listing-modal";
 import Footer from "@/components/wanderlust/footer";
 import { listings, type FilterId, type Listing } from "@/lib/wanderlust/data";
 import { DEFAULT_CURRENCY, type CurrencyCode } from "@/lib/wanderlust/currency";
+
+function isoDay(offsetDays: number): string {
+  const d = new Date();
+  d.setDate(d.getDate() + offsetDays);
+  return d.toISOString().slice(0, 10);
+}
 
 export default function WanderLustPage() {
   const [currency, setCurrency] = useState<CurrencyCode>(DEFAULT_CURRENCY);
@@ -18,6 +30,12 @@ export default function WanderLustPage() {
   const [saved, setSaved] = useState<ReadonlySet<string>>(new Set());
   const [savedOnly, setSavedOnly] = useState(false);
   const [selected, setSelected] = useState<Listing | null>(null);
+
+  /* Shared search state — hero widget feeds the listings + booking modal */
+  const [checkIn, setCheckIn] = useState(() => isoDay(7));
+  const [checkOut, setCheckOut] = useState(() => isoDay(10));
+  const [month, setMonth] = useState("");
+  const [guests, setGuests] = useState(2);
 
   const toggleSave = (id: string) => {
     setSaved((prev) => {
@@ -39,6 +57,25 @@ export default function WanderLustPage() {
     });
   }, [filter, query, savedOnly, saved]);
 
+  const scrollToCollection = () => {
+    document
+      .getElementById("collection")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const pickCollection = (f: FilterId) => {
+    setFilter(f);
+    setSavedOnly(false);
+    scrollToCollection();
+  };
+
+  const pickDestination = (q: string) => {
+    setQuery(q);
+    setFilter("all");
+    setSavedOnly(false);
+    scrollToCollection();
+  };
+
   return (
     <div className="wl-app" id="top">
       <Navbar
@@ -51,27 +88,57 @@ export default function WanderLustPage() {
         onToggleSaved={() => setSavedOnly((v) => !v)}
       />
 
-      <main className="wl-main">
-        <Hero />
-        <FilterRail
-          active={filter}
-          onActiveChange={setFilter}
-          showTax={showTax}
-          onShowTaxChange={setShowTax}
-        />
-        <ListingGrid
-          listings={visible}
-          currency={currency}
-          showTax={showTax}
+      <main>
+        <Hero
           query={query}
-          saved={saved}
-          savedOnly={savedOnly}
-          onOpen={setSelected}
-          onToggleSave={toggleSave}
+          onQueryChange={setQuery}
+          guests={guests}
+          onGuestsChange={setGuests}
+          checkIn={checkIn}
+          checkOut={checkOut}
+          onCheckInChange={setCheckIn}
+          onCheckOutChange={setCheckOut}
+          month={month}
+          onMonthChange={setMonth}
+          onSearch={scrollToCollection}
         />
+
+        <Collections onPick={pickCollection} />
+        <Sanctuary />
+        <Excellence />
+        <TrustStrip />
+
+        <section className="wl-listings">
+          <div className="wl-container">
+            <div className="wl-listings-head">
+              <h2 className="wl-band-title">Explore the collection</h2>
+              <p className="wl-band-sub">
+                Hand-picked stays, one transparent price — whatever your party
+                size.
+              </p>
+            </div>
+
+            <FilterRail
+              active={filter}
+              onActiveChange={setFilter}
+              showTax={showTax}
+              onShowTaxChange={setShowTax}
+            />
+            <ListingGrid
+              listings={visible}
+              currency={currency}
+              showTax={showTax}
+              query={query}
+              saved={saved}
+              savedOnly={savedOnly}
+              onOpen={setSelected}
+              onToggleSave={toggleSave}
+            />
+          </div>
+        </section>
       </main>
 
-      <Footer />
+      <Footer onPickFilter={pickCollection} onPickDestination={pickDestination} />
 
       {selected && (
         <ListingModal
@@ -79,6 +146,9 @@ export default function WanderLustPage() {
           listing={selected}
           currency={currency}
           showTax={showTax}
+          initialCheckIn={checkIn}
+          initialCheckOut={checkOut}
+          initialGuests={guests}
           onClose={() => setSelected(null)}
         />
       )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   CloseIcon,
   HeartIcon,
@@ -30,24 +30,39 @@ export default function Navbar({
   onToggleSaved,
 }: NavbarProps) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  /* Transparent over the hero → dark frosted glass once scrolled */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <nav className="wl-navbar">
+    <nav className={`wl-navbar${scrolled ? " is-scrolled" : ""}`}>
       <div className="wl-navbar-inner">
         <a className="wl-brand" href="#top" aria-label="WanderLust home">
-          <PlaneIcon className="wl-logo" size={26} />
+          <PlaneIcon className="wl-logo" size={24} />
           <span className="wl-brand-word">WanderLust</span>
         </a>
 
         <div className="wl-nav-center">
+          <a className="wl-nav-link" href="#collections">
+            Collections
+          </a>
+          <a className="wl-nav-link" href="#sanctuary">
+            The experience
+          </a>
           <a className="wl-nav-link" href="#collection">
-            Explore
+            Explore stays
           </a>
         </div>
 
         <div className="wl-nav-tools">
           <form
-            className="wl-nav-search"
+            className="wl-nav-search wl-hide-sm"
             role="search"
             onSubmit={(e) => e.preventDefault()}
           >
@@ -77,7 +92,7 @@ export default function Navbar({
             <span className="wl-saved-count">{savedCount}</span>
           </button>
 
-          {/* Currency — frosted segmented control (USD / EGP) */}
+          {/* Currency — translucent segmented control (USD / EGP) */}
           <div
             className="wl-currency-switch"
             role="group"
@@ -103,13 +118,7 @@ export default function Navbar({
             ))}
           </div>
 
-          <a className="wl-nav-link wl-hide-sm" href="#collection">
-            List your stay
-          </a>
-          <a className="wl-nav-link wl-hide-sm" href="#collection">
-            Sign up
-          </a>
-          <a className="wl-nav-link wl-nav-link-pill wl-hide-sm" href="#collection">
+          <a className="wl-nav-link wl-nav-link-pill wl-hide-md" href="#collection">
             Log in
           </a>
 
@@ -128,14 +137,14 @@ export default function Navbar({
       {/* Mobile floating frosted sheet */}
       {open && (
         <div className="wl-mobile-sheet">
-          <a className="wl-nav-link" href="#collection" onClick={() => setOpen(false)}>
-            Explore
+          <a className="wl-nav-link" href="#collections" onClick={() => setOpen(false)}>
+            Collections
+          </a>
+          <a className="wl-nav-link" href="#sanctuary" onClick={() => setOpen(false)}>
+            The experience
           </a>
           <a className="wl-nav-link" href="#collection" onClick={() => setOpen(false)}>
-            List your stay
-          </a>
-          <a className="wl-nav-link" href="#collection" onClick={() => setOpen(false)}>
-            Sign up
+            Explore stays
           </a>
           <a
             className="wl-nav-link wl-nav-link-pill"

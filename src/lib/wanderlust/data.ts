@@ -33,6 +33,55 @@ export const FILTERS = [
 
 export type FilterId = (typeof FILTERS)[number]["id"];
 
+/* ============================================================
+   Landing page content — Blacklane-style editorial sections
+   ============================================================ */
+
+/** Cinematic full-bleed hero photograph (moody twilight resort). */
+export const HERO_IMAGE =
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/62af31a0c972.jpg";
+
+/** Sanctuary split-section photograph (Tuscan estate at golden hour). */
+export const SANCTUARY_IMAGE =
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ebe8e8904c5e.jpg";
+
+export interface CollectionCard {
+  id: string;
+  eyebrow: string;
+  title: string;
+  copy: string;
+  image: string;
+  filter: FilterId;
+}
+
+/** Curated collections — the "service cards" band under the hero. */
+export const COLLECTIONS: CollectionCard[] = [
+  {
+    id: "ancient-wonders",
+    eyebrow: "Ancient wonders",
+    title: "Walk through history.",
+    copy: "Sleep beside the last Wonder of the Ancient World and wake to temples carved from cliffs.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3c0d35ab2491.webp",
+    filter: "castles",
+  },
+  {
+    id: "sun-and-sea",
+    eyebrow: "Sun & sea",
+    title: "Slow days by the water.",
+    copy: "Private lagoons, house reefs and plunge pools above the caldera — the sea does the rest.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ed4b62ef7f55.jpg",
+    filter: "pools",
+  },
+  {
+    id: "under-the-aurora",
+    eyebrow: "Under the aurora",
+    title: "Chase the northern lights.",
+    copy: "Glass-roofed lodges and wood-fired saunas under skies that catch fire after dark.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c564d8e1bda9.jpg",
+    filter: "arctic",
+  },
+];
+
 export const listings: Listing[] = [
   {
     id: "giza-pyramids",
@@ -67,7 +116,7 @@ export const listings: Listing[] = [
     title: "Nilebank Suite, Luxor",
     description:
       "A stone terrace suite on the West Bank of the Nile, feluccas drifting past Karnak's columns at dawn. Walk to the Valley of the Kings before the tour buses arrive.",
-    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3c50b364b70e.jpg",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/a5feacb80a10.jpg",
     price: 58,
     location: "Luxor",
     country: "Egypt",
@@ -193,7 +242,7 @@ export const listings: Listing[] = [
     title: "Tuscan Farmhouse Estate",
     description:
       "A restored farmhouse on a working olive estate outside Siena. Cypress-lined drive, a long table under the pergola, and a pool that glows at golden hour.",
-    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/cec52259d3f6.jpg",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ebe8e8904c5e.jpg",
     price: 67,
     location: "Siena, Tuscany",
     country: "Italy",
