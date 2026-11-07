@@ -1,0 +1,1062 @@
+     1→/* ============================================================
+     2→   WanderLust — Apple Edition
+     3→   Premium white theme · Glassmorphism · SF-inspired typography
+     4→   --------------------------------------------------------------
+     5→
+     6→   Design tokens
+     7→     Ink ......... #1d1d1f (primary)  #6e6e73 (secondary)
+     8→     Accent ...... Apple Blue #0071e3 (pill CTAs)
+     9→     Glass ....... rgba(255,255,255,.62) + blur(20px) saturate(180%)
+    10→     Hairlines ... rgba(0,0,0,.08)
+    11→     Surfaces .... #fbfbfd page · #ffffff cards
+    12→   ============================================================ */
+    13→
+    14→:root {
+    15→  /* Typography */
+    16→  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    17→    "Inter", "Segoe UI", Roboto, "Helvetica Neue", "Plus Jakarta Sans", Arial,
+    18→    sans-serif;
+    19→
+    20→  /* Ink scale (Apple system grays) */
+    21→  --ink: #1d1d1f;
+    22→  --ink-2: #6e6e73;
+    23→  --ink-3: #86868b;
+    24→  --ink-4: #aeaeb2;
+    25→
+    26→  /* Accent */
+    27→  --blue: #0071e3;
+    28→  --blue-hover: #0077ed;
+    29→  --blue-deep: #0066cc;
+    30→  --blue-soft: rgba(0, 113, 227, 0.12);
+    31→  --link: #0066cc;
+    32→
+    33→  /* Semantic (Apple system colors) */
+    34→  --green: #34c759;
+    35→  --red: #ff3b30;
+    36→  --amber: #ff9500;
+    37→  --gold: #f5a623;
+    38→
+    39→  /* Surfaces & lines */
+    40→  --page: #fbfbfd;
+    41→  --surface: #ffffff;
+    42→  --hairline: rgba(0, 0, 0, 0.08);
+    43→  --hairline-strong: rgba(0, 0, 0, 0.14);
+    44→
+    45→  /* Glass recipe */
+    46→  --glass-bg: rgba(255, 255, 255, 0.58);
+    47→  --glass-bg-strong: rgba(255, 255, 255, 0.8);
+    48→  --glass-border: rgba(255, 255, 255, 0.65);
+    49→  --glass-blur: saturate(180%) blur(20px);
+    50→  --glass-blur-lg: saturate(180%) blur(32px);
+    51→
+    52→  /* Radii */
+    53→  --r-sm: 10px;
+    54→  --r-md: 14px;
+    55→  --r-lg: 20px;
+    56→  --r-xl: 26px;
+    57→  --r-pill: 980px;
+    58→
+    59→  /* Elevation */
+    60→  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05), 0 3px 14px rgba(0, 0, 0, 0.06);
+    61→  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.05), 0 16px 44px rgba(0, 0, 0, 0.10);
+    62→  --shadow-lg: 0 6px 18px rgba(0, 0, 0, 0.06), 0 32px 76px rgba(0, 0, 0, 0.15);
+    63→
+    64→  /* Motion */
+    65→  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+    66→  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+    67→}
+    68→
+    69→/* ============================================================
+    70→   Base
+    71→   ============================================================ */
+    72→
+    73→html {
+    74→  scroll-behavior: smooth;
+    75→}
+    76→
+    77→body {
+    78→  font-family: var(--font-sans) !important;
+    79→  font-optical-sizing: auto;
+    80→  font-style: normal;
+    81→  color: var(--ink);
+    82→  background-color: var(--page);
+    83→  display: flex;
+    84→  flex-direction: column;
+    85→  min-height: 100vh;
+    86→  letter-spacing: -0.01em;
+    87→  -webkit-font-smoothing: antialiased;
+    88→  -moz-osx-font-smoothing: grayscale;
+    89→  text-rendering: optimizeLegibility;
+    90→}
+    91→
+    92→/* Ambient aurora wash — gives the frosted glass something to blur.
+    93→   Blobs kept away from the hero's centre so headline contrast stays clean. */
+    94→body::before {
+    95→  content: "";
+    96→  position: fixed;
+    97→  inset: 0;
+    98→  z-index: -1;
+    99→  pointer-events: none;
+   100→  background:
+   101→    radial-gradient(52rem 34rem at 8% -10%, rgba(0, 144, 255, 0.18), transparent 62%),
+   102→    radial-gradient(44rem 30rem at 92% 26%, rgba(255, 95, 162, 0.14), transparent 60%),
+   103→    radial-gradient(64rem 44rem at 55% 115%, rgba(112, 74, 255, 0.12), transparent 62%),
+   104→    radial-gradient(40rem 28rem at -12% 68%, rgba(52, 199, 89, 0.10), transparent 60%);
+   105→}
+   106→
+   107→.container {
+   108→  flex: 1;
+   109→  width: 100%;
+   110→}
+   111→
+   112→h1, h2, h3, h4, h5, h6,
+   113→.h1, .h2, .h3, .h4, .h5, .h6 {
+   114→  color: var(--ink);
+   115→  letter-spacing: -0.022em;
+   116→  font-weight: 700;
+   117→}
+   118→
+   119→p {
+   120→  color: var(--ink-2);
+   121→}
+   122→
+   123→a {
+   124→  color: var(--link);
+   125→  transition: color 0.18s var(--ease), opacity 0.18s var(--ease);
+   126→}
+   127→
+   128→::selection {
+   129→  background: rgba(0, 113, 227, 0.18);
+   130→  color: var(--ink);
+   131→}
+   132→
+   133→/* Refined scrollbar */
+   134→::-webkit-scrollbar { width: 10px; height: 10px; }
+   135→::-webkit-scrollbar-track { background: transparent; }
+   136→::-webkit-scrollbar-thumb {
+   137→  background: rgba(0, 0, 0, 0.18);
+   138→  border-radius: var(--r-pill);
+   139→  border: 3px solid var(--page);
+   140→}
+   141→::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.3); }
+   142→
+   143→:focus-visible {
+   144→  outline: 3px solid rgba(0, 113, 227, 0.35);
+   145→  outline-offset: 2px;
+   146→  border-radius: 4px;
+   147→}
+   148→
+   149→/* Entrance motion — quiet, Apple-keynote style */
+   150→@keyframes rise {
+   151→  from { opacity: 0; transform: translateY(16px); }
+   152→  to   { opacity: 1; transform: translateY(0); }
+   153→}
+   154→
+   155→@keyframes fadeIn {
+   156→  from { opacity: 0; }
+   157→  to   { opacity: 1; }
+   158→}
+   159→
+   160→.rise {
+   161→  animation: rise 0.7s var(--ease) both;
+   162→  animation-delay: var(--d, 0ms);
+   163→}
+   164→
+   165→@media (prefers-reduced-motion: reduce) {
+   166→  *, *::before, *::after {
+   167→    animation-duration: 0.01ms !important;
+   168→    animation-iteration-count: 1 !important;
+   169→    transition-duration: 0.01ms !important;
+   170→    scroll-behavior: auto !important;
+   171→  }
+   172→}
+   173→
+   174→/* ============================================================
+   175→   Glass surfaces
+   176→   ============================================================ */
+   177→
+   178→.glass-card {
+   179→  background: var(--glass-bg);
+   180→  -webkit-backdrop-filter: var(--glass-blur);
+   181→  backdrop-filter: var(--glass-blur);
+   182→  border: 1px solid var(--glass-border);
+   183→  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+   184→  border-radius: var(--r-xl);
+   185→}
+   186→
+   187→.glass-panel {
+   188→  background: var(--glass-bg);
+   189→  -webkit-backdrop-filter: var(--glass-blur);
+   190→  backdrop-filter: var(--glass-blur);
+   191→  border: 1px solid var(--hairline);
+   192→  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+   193→}
+   194→
+   195→/* ============================================================
+   196→   Buttons — Apple pill system
+   197→   ============================================================ */
+   198→
+   199→.btn {
+   200→  border-radius: var(--r-pill);
+   201→  font-weight: 600;
+   202→  letter-spacing: -0.01em;
+   203→  transition: transform 0.2s var(--ease), background-color 0.2s var(--ease),
+   204→    box-shadow 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease);
+   205→}
+   206→
+   207→.btn:active { transform: scale(0.97); }
+   208→
+   209→.btn-apple {
+   210→  background-color: var(--blue);
+   211→  border: 1px solid transparent;
+   212→  color: #fff;
+   213→  padding: 0.6rem 1.5rem;
+   214→  box-shadow: 0 1px 2px rgba(0, 113, 227, 0.25);
+   215→}
+   216→
+   217→.btn-apple:hover,
+   218→.btn-apple:focus {
+   219→  background-color: var(--blue-hover);
+   220→  color: #fff;
+   221→  transform: translateY(-1px);
+   222→  box-shadow: 0 6px 18px rgba(0, 113, 227, 0.32);
+   223→}
+   224→
+   225→.btn-glass {
+   226→  background: var(--glass-bg-strong);
+   227→  -webkit-backdrop-filter: var(--glass-blur);
+   228→  backdrop-filter: var(--glass-blur);
+   229→  border: 1px solid var(--hairline);
+   230→  color: var(--ink);
+   231→  padding: 0.6rem 1.5rem;
+   232→  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+   233→}
+   234→
+   235→.btn-glass:hover,
+   236→.btn-glass:focus {
+   237→  color: var(--ink);
+   238→  border-color: var(--hairline-strong);
+   239→  transform: translateY(-1px);
+   240→  box-shadow: var(--shadow-md);
+   241→}
+   242→
+   243→.btn-apple-sm { padding: 0.38rem 1.05rem; font-size: 0.875rem; }
+   244→.btn-glass-sm { padding: 0.38rem 1.05rem; font-size: 0.875rem; }
+   245→
+   246→/* Legacy aliases — buttons referenced by old class names */
+   247→.btn-search {
+   248→  background-color: var(--blue);
+   249→  color: #fff;
+   250→  border-radius: var(--r-pill);
+   251→  padding: 0 1rem;
+   252→  border: none;
+   253→}
+   254→
+   255→.btn-search:hover {
+   256→  background-color: var(--blue-hover);
+   257→  color: #fff;
+   258→  opacity: 1;
+   259→}
+   260→
+   261→.add-btn,
+   262→.edit-btn {
+   263→  background-color: var(--blue) !important;
+   264→  border: 1px solid transparent !important;
+   265→  color: #fff;
+   266→}
+   267→
+   268→.add-btn:hover,
+   269→.edit-btn:hover {
+   270→  background-color: var(--blue-hover) !important;
+   271→  color: #fff;
+   272→}
+   273→
+   274→/* ============================================================
+   275→   Forms
+   276→   ============================================================ */
+   277→
+   278→.form-label {
+   279→  font-size: 0.8125rem;
+   280→  font-weight: 600;
+   281→  color: var(--ink-2);
+   282→  letter-spacing: 0;
+   283→  margin-bottom: 0.375rem;
+   284→}
+   285→
+   286→.form-control,
+   287→.form-select {
+   288→  border-radius: var(--r-sm);
+   289→  border: 1px solid var(--hairline-strong);
+   290→  padding: 0.62rem 0.9rem;
+   291→  font-size: 0.95rem;
+   292→  color: var(--ink);
+   293→  background-color: rgba(255, 255, 255, 0.72);
+   294→  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+   295→  transition: border-color 0.18s var(--ease), box-shadow 0.18s var(--ease),
+   296→    background-color 0.18s var(--ease);
+   297→}
+   298→
+   299→.form-control::placeholder { color: var(--ink-3); opacity: 1; }
+   300→
+   301→.form-control:focus,
+   302→.form-select:focus {
+   303→  border-color: var(--blue);
+   304→  background-color: #fff;
+   305→  box-shadow: 0 0 0 4px var(--blue-soft);
+   306→}
+   307→
+   308→.form-control[type="file"] { padding: 0.5rem 0.75rem; }
+   309→
+   310→textarea.form-control { border-radius: var(--r-md); }
+   311→
+   312→/* Apple-green toggle for the tax switch */
+   313→.form-check-input {
+   314→  border-color: var(--hairline-strong);
+   315→}
+   316→.form-check-input:checked {
+   317→  background-color: var(--green);
+   318→  border-color: var(--green);
+   319→}
+   320→.form-check-input:focus {
+   321→  border-color: var(--green);
+   322→  box-shadow: 0 0 0 4px rgba(52, 199, 89, 0.18);
+   323→}
+   324→.form-check-label {
+   325→  font-size: 0.8125rem;
+   326→  color: var(--ink-2);
+   327→  font-weight: 500;
+   328→}
+   329→
+   330→.invalid-feedback { font-size: 0.8125rem; }
+   331→
+   332→/* ============================================================
+   333→   Navbar — frosted glass, apple.com proportions
+   334→   ============================================================ */
+   335→
+   336→.navbar {
+   337→  height: 4.25rem;
+   338→  background: rgba(255, 255, 255, 0.64);
+   339→  -webkit-backdrop-filter: saturate(180%) blur(20px);
+   340→  backdrop-filter: saturate(180%) blur(20px);
+   341→  border-bottom: 1px solid var(--hairline) !important;
+   342→  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+   343→}
+   344→
+   345→.navbar-brand { display: flex; align-items: center; gap: 0.55rem; }
+   346→
+   347→.fa-compass,
+   348→.nav-logo {
+   349→  color: var(--blue);
+   350→  font-size: 1.55rem;
+   351→  filter: drop-shadow(0 2px 6px rgba(0, 113, 227, 0.28));
+   352→}
+   353→
+   354→.logo-animate { transition: transform 0.5s var(--ease-spring); }
+   355→.navbar-brand:hover .logo-animate { transform: rotate(90deg); }
+   356→
+   357→.nav-brand-word {
+   358→  font-size: 1.18rem;
+   359→  font-weight: 700;
+   360→  letter-spacing: -0.03em;
+   361→  color: var(--ink);
+   362→  white-space: nowrap;
+   363→}
+   364→
+   365→.nav-link {
+   366→  color: var(--ink-2) !important;
+   367→  font-size: 0.875rem;
+   368→  font-weight: 500;
+   369→  border-radius: var(--r-pill);
+   370→  padding: 0.375rem 0.85rem !important;
+   371→  transition: color 0.18s var(--ease), background-color 0.18s var(--ease);
+   372→}
+   373→
+   374→.nav-link:hover {
+   375→  color: var(--ink) !important;
+   376→  background-color: rgba(0, 0, 0, 0.045);
+   377→}
+   378→
+   379→.nav-link-pill {
+   380→  color: #fff !important;
+   381→  background-color: var(--blue);
+   382→  box-shadow: 0 1px 2px rgba(0, 113, 227, 0.25);
+   383→}
+   384→
+   385→.nav-link-pill:hover {
+   386→  background-color: var(--blue-hover) !important;
+   387→  color: #fff !important;
+   388→}
+   389→
+   390→/* Spotlight-style search field */
+   391→.nav-search {
+   392→  position: relative;
+   393→  min-width: 240px;
+   394→}
+   395→
+   396→.nav-search .form-control {
+   397→  border-radius: var(--r-pill);
+   398→  padding: 0.42rem 2.7rem 0.42rem 1.05rem;
+   399→  font-size: 0.875rem;
+   400→  background-color: rgba(0, 0, 0, 0.04);
+   401→  border: 1px solid transparent;
+   402→  box-shadow: none;
+   403→}
+   404→
+   405→.nav-search .form-control:focus {
+   406→  background-color: #fff;
+   407→  border-color: var(--blue);
+   408→  box-shadow: 0 0 0 4px var(--blue-soft);
+   409→}
+   410→
+   411→.nav-search-btn {
+   412→  position: absolute;
+   413→  right: 0.4rem;
+   414→  top: 50%;
+   415→  transform: translateY(-50%);
+   416→  border: none;
+   417→  background: transparent;
+   418→  color: var(--ink-3);
+   419→  font-size: 0.85rem;
+   420→  padding: 0.35rem 0.5rem;
+   421→  border-radius: var(--r-pill);
+   422→  transition: color 0.18s var(--ease), background-color 0.18s var(--ease);
+   423→}
+   424→
+   425→.nav-search-btn:hover { color: var(--blue); background: var(--blue-soft); }
+   426→
+   427→.navbar-toggler {
+   428→  border: none;
+   429→  padding: 0.4rem 0.6rem;
+   430→  border-radius: var(--r-sm);
+   431→  color: var(--ink-2);
+   432→}
+   433→
+   434→.navbar-toggler:focus { box-shadow: 0 0 0 4px var(--blue-soft); }
+   435→
+   436→/* Collapsed (mobile) panel becomes a floating frosted glass sheet.
+   437→   Note: the bar drops its own backdrop-filter on mobile — an ancestor
+   438→   backdrop-filter would become a backdrop root and mute the sheet's frost. */
+   439→@media (max-width: 767.98px) {
+   440→  .navbar {
+   441→    background: rgba(255, 255, 255, 0.94);
+   442→    -webkit-backdrop-filter: none;
+   443→    backdrop-filter: none;
+   444→  }
+   445→
+   446→  .navbar-collapse {
+   447→    flex-direction: column;
+   448→    align-items: stretch;
+   449→    margin-top: 0.85rem;
+   450→    padding: 1.1rem 1.15rem 1.25rem;
+   451→    background: rgba(255, 255, 255, 0.72);
+   452→    -webkit-backdrop-filter: var(--glass-blur-lg);
+   453→    backdrop-filter: var(--glass-blur-lg);
+   454→    border: 1px solid var(--glass-border);
+   455→    border-radius: var(--r-lg);
+   456→    box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+   457→  }
+   458→
+   459→  .navbar-collapse .navbar-nav { width: 100%; }
+   460→
+   461→  .navbar-collapse .nav-link {
+   462→    display: block;
+   463→    padding: 0.6rem 0.85rem !important;
+   464→  }
+   465→
+   466→  .navbar-collapse .nav-link-pill {
+   467→    display: inline-block !important;
+   468→    text-align: center;
+   469→    margin-top: 0.6rem;
+   470→    padding: 0.55rem 1.4rem !important;
+   471→  }
+   472→
+   473→  .nav-search {
+   474→    min-width: 0;
+   475→    width: 100%;
+   476→    margin: 0.35rem 0 0.75rem;
+   477→    order: -1; /* search first inside the sheet */
+   478→  }
+   479→}
+   480→
+   481→/* ============================================================
+   482→   Flash messages — glass toast bars
+   483→   ============================================================ */
+   484→
+   485→.alert {
+   486→  border: 1px solid var(--glass-border);
+   487→  border-radius: var(--r-md);
+   488→  -webkit-backdrop-filter: var(--glass-blur);
+   489→  backdrop-filter: var(--glass-blur);
+   490→  background: rgba(255, 255, 255, 0.75);
+   491→  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+   492→  color: var(--ink);
+   493→  font-weight: 500;
+   494→  font-size: 0.9rem;
+   495→  animation: fadeIn 0.35s var(--ease) both;
+   496→}
+   497→
+   498→.alert .btn-close { filter: none; opacity: 0.45; }
+   499→
+   500→.alert-dismissible .btn-close:focus {
+   501→  box-shadow: 0 0 0 4px var(--blue-soft);
+   502→  border-radius: var(--r-pill);
+   503→  opacity: 1;
+   504→}
+   505→
+   506→.alert-success .alert-icon { color: #1d8a3e; }
+   507→.alert-danger .alert-icon { color: var(--red); }
+   508→
+   509→.alert-icon-success { background: rgba(52, 199, 89, 0.14); color: #1d8a3e; }
+   510→.alert-icon-error { background: rgba(255, 59, 48, 0.12); color: var(--red); }
+   511→
+   512→.alert-icon {
+   513→  display: inline-flex;
+   514→  align-items: center;
+   515→  justify-content: center;
+   516→  width: 1.65rem;
+   517→  height: 1.65rem;
+   518→  border-radius: 50%;
+   519→  margin-right: 0.55rem;
+   520→  font-size: 0.8rem;
+   521→  flex-shrink: 0;
+   522→  vertical-align: -0.4rem;
+   523→}
+   524→
+   525→.alert-success .alert-icon { background: rgba(52, 199, 89, 0.14); }
+   526→.alert-danger .alert-icon { background: rgba(255, 59, 48, 0.12); }
+   527→
+   528→/* ============================================================
+   529→   Hero — product-page headline
+   530→   ============================================================ */
+   531→
+   532→.hero {
+   533→  text-align: center;
+   534→  max-width: 44rem;
+   535→  margin: 3rem auto 2.5rem;
+   536→  padding: 0 1rem;
+   537→}
+   538→
+   539→.hero-eyebrow {
+   540→  font-size: 0.8125rem;
+   541→  font-weight: 600;
+   542→  letter-spacing: 0.08em;
+   543→  text-transform: uppercase;
+   544→  color: var(--ink-3);
+   545→  margin-bottom: 0.9rem;
+   546→}
+   547→
+   548→.hero-title {
+   549→  font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+   550→  font-weight: 800;
+   551→  letter-spacing: -0.035em;
+   552→  line-height: 1.06;
+   553→  color: var(--ink);
+   554→  margin-bottom: 1rem;
+   555→}
+   556→
+   557→.hero-gradient {
+   558→  background: linear-gradient(96deg, #0090ff 10%, #7d4aff 90%);
+   559→  -webkit-background-clip: text;
+   560→  background-clip: text;
+   561→  -webkit-text-fill-color: transparent;
+   562→  color: transparent;
+   563→}
+   564→
+   565→.hero-sub {
+   566→  font-size: 1.125rem;
+   567→  line-height: 1.5;
+   568→  color: var(--ink-2);
+   569→  max-width: 34rem;
+   570→  margin: 0 auto;
+   571→}
+   572→
+   573→/* ============================================================
+   574→   Filter rail & tax toggle — one segmented frosted toolbar
+   575→   ============================================================ */
+   576→
+   577→.filters-main-wrapper {
+   578→  display: flex;
+   579→  align-items: center;
+   580→  gap: 0.4rem;
+   581→  margin: 1.25rem 0 1.75rem;
+   582→  padding: 0.4rem 0.65rem;
+   583→  border: 1px solid var(--glass-border);
+   584→  border-radius: var(--r-pill);
+   585→  background: var(--glass-bg-strong);
+   586→  -webkit-backdrop-filter: var(--glass-blur);
+   587→  backdrop-filter: var(--glass-blur);
+   588→  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+   589→}
+   590→
+   591→#filters-container {
+   592→  display: flex;
+   593→  align-items: center;
+   594→  border: none;
+   595→  border-radius: 0;
+   596→  padding: 0;
+   597→  flex-grow: 1;
+   598→  background: transparent;
+   599→  -webkit-backdrop-filter: none;
+   600→  backdrop-filter: none;
+   601→  box-shadow: none;
+   602→  overflow: hidden;
+   603→  min-width: 0;
+   604→}
+   605→
+   606→#filters {
+   607→  display: flex;
+   608→  align-items: center;
+   609→  overflow-x: auto;
+   610→  scroll-behavior: smooth;
+   611→  scrollbar-width: none;
+   612→  padding-left: 0.25rem;
+   613→  /* Apple-style edge fade — hints the rail scrolls */
+   614→  -webkit-mask-image: linear-gradient(90deg, transparent, #000 1.25rem, #000 calc(100% - 1.25rem), transparent);
+   615→  mask-image: linear-gradient(90deg, transparent, #000 1.25rem, #000 calc(100% - 1.25rem), transparent);
+   616→}
+   617→
+   618→#filters::-webkit-scrollbar { display: none; }
+   619→
+   620→.filter {
+   621→  text-align: center;
+   622→  margin-right: 0.75rem;
+   623→  padding: 0.45rem 0.85rem;
+   624→  border-radius: var(--r-pill);
+   625→  opacity: 0.75;
+   626→  cursor: pointer;
+   627→  color: var(--ink-2);
+   628→  border: 1px solid transparent;
+   629→  transition: all 0.22s var(--ease);
+   630→  flex-shrink: 0;
+   631→}
+   632→
+   633→/* Normalize icon baseline across all glyph shapes */
+   634→.filter div {
+   635→  height: 1.5rem;
+   636→  display: flex;
+   637→  align-items: center;
+   638→  justify-content: center;
+   639→}
+   640→
+   641→.filter i { font-size: 1.05rem; line-height: 1; }
+   642→
+   643→.filter p {
+   644→  font-size: 0.75rem;
+   645→  font-weight: 600;
+   646→  margin: 0.25rem 0 0;
+   647→  color: var(--ink-2);
+   648→  white-space: nowrap;
+   649→}
+   650→
+   651→.filter:hover {
+   652→  opacity: 1;
+   653→  color: var(--ink);
+   654→  background: rgba(0, 0, 0, 0.05);
+   655→  border-bottom-color: transparent;
+   656→}
+   657→
+   658→.filter:hover p { color: var(--ink); }
+   659→
+   660→.tax-toggle {
+   661→  border: none;
+   662→  border-left: 1px solid var(--hairline);
+   663→  border-radius: 0;
+   664→  height: auto;
+   665→  padding: 0 0.5rem 0 1.25rem;
+   666→  display: flex;
+   667→  align-items: center;
+   668→  white-space: nowrap;
+   669→  background: transparent;
+   670→  -webkit-backdrop-filter: none;
+   671→  backdrop-filter: none;
+   672→  box-shadow: none;
+   673→  margin-left: 0.25rem;
+   674→}
+   675→
+   676→.tax-toggle .form-check {
+   677→  display: flex;
+   678→  align-items: center;
+   679→  margin: 0;
+   680→}
+   681→
+   682→.nav-btn {
+   683→  border: none;
+   684→  background: transparent;
+   685→  cursor: pointer;
+   686→  color: var(--ink-3);
+   687→  width: 2rem;
+   688→  height: 2rem;
+   689→  border-radius: 50%;
+   690→  display: inline-flex;
+   691→  align-items: center;
+   692→  justify-content: center;
+   693→  font-size: 0.8rem;
+   694→  transition: all 0.18s var(--ease);
+   695→}
+   696→
+   697→.nav-btn:hover {
+   698→  color: var(--ink);
+   699→  background: rgba(0, 0, 0, 0.06);
+   700→}
+   701→
+   702→@media (max-width: 900px) {
+   703→  .filters-main-wrapper {
+   704→    flex-direction: column;
+   705→    align-items: stretch;
+   706→    border-radius: var(--r-lg);
+   707→    gap: 0.75rem;
+   708→    padding: 0.75rem;
+   709→  }
+   710→  #filters-container { width: 100%; }
+   711→  .tax-toggle {
+   712→    justify-content: center;
+   713→    border-left: none;
+   714→    border-top: 1px solid var(--hairline);
+   715→    padding: 0.75rem 0 0.15rem;
+   716→    margin-left: 0;
+   717→  }
+   718→}
+   719→
+   720→/* ============================================================
+   721→   Listing cards — gallery tiles
+   722→   ============================================================ */
+   723→
+   724→.listing-card {
+   725→  border: 1px solid var(--glass-border) !important;
+   726→  margin-bottom: 2.25rem;
+   727→  overflow: hidden;
+   728→  border-radius: var(--r-lg) !important;
+   729→  background: var(--glass-bg-strong);
+   730→  -webkit-backdrop-filter: var(--glass-blur);
+   731→  backdrop-filter: var(--glass-blur);
+   732→  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+   733→  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+   734→  animation: rise 0.65s var(--ease) both;
+   735→  animation-delay: var(--d, 0ms);
+   736→}
+   737→
+   738→.listing-card:hover {
+   739→  transform: translateY(-6px);
+   740→  box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+   741→}
+   742→
+   743→.card-img-top {
+   744→  border-radius: 0 !important;
+   745→  width: 100% !important;
+   746→  object-fit: cover !important;
+   747→  transition: transform 0.6s var(--ease);
+   748→}
+   749→
+   750→.listing-card:hover .card-img-top {
+   751→  transform: scale(1.045);
+   752→}
+   753→
+   754→.card-body {
+   755→  padding: 1rem 1.15rem 1.15rem !important;
+   756→}
+   757→
+   758→.card-text { margin-bottom: 0; }
+   759→
+   760→.card-text .fw-bold,
+   761→.card-title {
+   762→  font-size: 1.0625rem;
+   763→  font-weight: 650;
+   764→  letter-spacing: -0.015em;
+   765→  color: var(--ink);
+   766→}
+   767→
+   768→.card-location {
+   769→  display: block;
+   770→  font-size: 0.8125rem;
+   771→  color: var(--ink-3);
+   772→  margin-top: 0.1rem;
+   773→}
+   774→
+   775→.card-text .text-secondary { color: var(--ink-2) !important; }
+   776→
+   777→.listing-link { text-decoration: none; }
+   778→
+   779→.listing-link:hover .fw-bold { color: var(--blue-deep); }
+   780→
+   781→.card-img-overlay {
+   782→  opacity: 0;
+   783→  transition: opacity 0.3s ease-in-out;
+   784→  border-radius: var(--r-lg) var(--r-lg) 0 0;
+   785→}
+   786→
+   787→.card-img-overlay:hover {
+   788→  opacity: 1;
+   789→  background: linear-gradient(180deg, transparent 40%, rgba(255, 255, 255, 0.35));
+   790→}
+   791→
+   792→/* ============================================================
+   793→   Show page — detail view
+   794→   ============================================================ */
+   795→
+   796→.show-img {
+   797→  height: 30vh;
+   798→}
+   799→
+   800→.hero-img {
+   801→  border-radius: var(--r-xl) !important;
+   802→  box-shadow: var(--shadow-md);
+   803→  border: 1px solid var(--glass-border);
+   804→}
+   805→
+   806→.section-title {
+   807→  font-size: 1.75rem;
+   808→  font-weight: 750;
+   809→  letter-spacing: -0.03em;
+   810→}
+   811→
+   812→.meta-line {
+   813→  color: var(--ink-3);
+   814→  font-size: 0.9375rem;
+   815→}
+   816→
+   817→.price-tag {
+   818→  font-size: 1.05rem;
+   819→  font-weight: 700;
+   820→  color: var(--ink);
+   821→  letter-spacing: -0.02em;
+   822→}
+   823→
+   824→/* Sticky frosted reservation widget */
+   825→.booking-widget {
+   826→  background: var(--glass-bg);
+   827→  -webkit-backdrop-filter: var(--glass-blur-lg);
+   828→  backdrop-filter: var(--glass-blur-lg);
+   829→  border: 1px solid var(--glass-border);
+   830→  border-radius: var(--r-xl);
+   831→  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+   832→}
+   833→
+   834→/* Reviews */
+   835→.review-card {
+   836→  background: var(--glass-bg);
+   837→  -webkit-backdrop-filter: var(--glass-blur);
+   838→  backdrop-filter: var(--glass-blur);
+   839→  border: 1px solid var(--glass-border);
+   840→  border-radius: var(--r-lg);
+   841→  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+   842→}
+   843→
+   844→.review-author { color: var(--blue-deep) !important; font-weight: 650; }
+   845→
+   846→.review-stars { color: var(--gold); letter-spacing: 0.12em; font-size: 0.8rem; }
+   847→
+   848→.btns { display: flex; }
+   849→
+   850→/* ============================================================
+   851→   Maps
+   852→   ============================================================ */
+   853→
+   854→#map {
+   855→  height: 400px;
+   856→  width: 100%;
+   857→  border-radius: var(--r-lg);
+   858→  border: 1px solid var(--glass-border);
+   859→  box-shadow: var(--shadow-md);
+   860→}
+   861→
+   862→@media (max-width: 768px) {
+   863→  #map { height: 300px; }
+   864→}
+   865→
+   866→/* ============================================================
+   867→   Auth & form cards (login / signup / new / edit)
+   868→   ============================================================ */
+   869→
+   870→.auth-card {
+   871→  max-width: 27.5rem;
+   872→  margin: 3.5rem auto 4rem;
+   873→  padding: 2.75rem 2.5rem;
+   874→  text-align: center;
+   875→}
+   876→
+   877→.auth-icon {
+   878→  width: 3.5rem;
+   879→  height: 3.5rem;
+   880→  margin: 0 auto 1.25rem;
+   881→  display: flex;
+   882→  align-items: center;
+   883→  justify-content: center;
+   884→  border-radius: 1.1rem;
+   885→  font-size: 1.4rem;
+   886→  color: #fff;
+   887→  background: linear-gradient(145deg, #0a84ff, var(--blue));
+   888→  box-shadow: 0 10px 24px rgba(0, 113, 227, 0.35);
+   889→}
+   890→
+   891→.auth-title {
+   892→  font-size: 1.75rem;
+   893→  font-weight: 800;
+   894→  letter-spacing: -0.03em;
+   895→  margin-bottom: 0.5rem;
+   896→}
+   897→
+   898→.auth-sub { color: var(--ink-2); font-size: 0.9375rem; margin-bottom: 1.75rem; }
+   899→
+   900→.auth-card .form-control { text-align: left; }
+   901→
+   902→.auth-card form { text-align: left; }
+   903→
+   904→.form-card {
+   905→  max-width: 46rem;
+   906→  margin: 2.5rem auto 3.5rem;
+   907→  padding: 2.5rem 2.75rem;
+   908→}
+   909→
+   910→.form-card .auth-title { text-align: left; margin-bottom: 1.75rem; }
+   911→
+   912→/* ============================================================
+   913→   Booking cards & status
+   914→   ============================================================ */
+   915→
+   916→.booking-card {
+   917→  background: var(--glass-bg);
+   918→  -webkit-backdrop-filter: var(--glass-blur);
+   919→  backdrop-filter: var(--glass-blur);
+   920→  border: 1px solid var(--glass-border);
+   921→  border-radius: var(--r-lg);
+   922→  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+   923→  overflow: hidden;
+   924→  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+   925→}
+   926→
+   927→.booking-card:hover {
+   928→  transform: translateY(-3px);
+   929→  box-shadow: var(--shadow-md);
+   930→}
+   931→
+   932→.badge-soft {
+   933→  border-radius: var(--r-pill);
+   934→  font-weight: 600;
+   935→  font-size: 0.7188rem;
+   936→  letter-spacing: 0.01em;
+   937→  padding: 0.38em 0.85em;
+   938→}
+   939→
+   940→.badge-soft-success {
+   941→  color: #1d8a3e;
+   942→  background: rgba(52, 199, 89, 0.14);
+   943→  border: 1px solid rgba(52, 199, 89, 0.25);
+   944→}
+   945→
+   946→.badge-soft-pending {
+   947→  color: #b25e00;
+   948→  background: rgba(255, 149, 0, 0.13);
+   949→  border: 1px solid rgba(255, 149, 0, 0.28);
+   950→}
+   951→
+   952→.invoice-box {
+   953→  background: rgba(255, 255, 255, 0.66);
+   954→  border: 1px solid var(--glass-border);
+   955→  border-radius: var(--r-lg);
+   956→  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+   957→}
+   958→
+   959→/* ============================================================
+   960→   Footer — legal strip, frosted
+   961→   ============================================================ */
+   962→
+   963→footer {
+   964→  margin-top: 2rem;
+   965→  background: rgba(255, 255, 255, 0.55);
+   966→  -webkit-backdrop-filter: var(--glass-blur);
+   967→  backdrop-filter: var(--glass-blur);
+   968→  border-top: 1px solid var(--hairline);
+   969→}
+   970→
+   971→.f-info {
+   972→  text-align: center;
+   973→  min-height: 7.5rem;
+   974→  display: flex;
+   975→  flex-wrap: wrap;
+   976→  justify-content: center;
+   977→  align-content: space-evenly;
+   978→  padding: 1.75rem 1rem;
+   979→}
+   980→
+   981→.f-info-links,
+   982→.f-info-socials,
+   983→.f-info-brand {
+   984→  width: 100%;
+   985→  display: flex;
+   986→  align-items: center;
+   987→  justify-content: center;
+   988→}
+   989→
+   990→.f-info-socials { gap: 0.75rem; margin-bottom: 0.5rem; }
+   991→
+   992→.f-info-socials i {
+   993→  font-size: 1rem;
+   994→  width: 2.4rem;
+   995→  height: 2.4rem;
+   996→  display: inline-flex;
+   997→  align-items: center;
+   998→  justify-content: center;
+   999→  color: var(--ink-2);
+  1000→  background: rgba(255, 255, 255, 0.7);
+  1001→  border: 1px solid var(--hairline);
+  1002→  border-radius: 50%;
+  1003→  margin-right: 0;
+  1004→  transition: all 0.22s var(--ease);
+  1005→  box-shadow: var(--shadow-sm);
+  1006→}
+  1007→
+  1008→.f-info-socials i:hover {
+  1009→  color: var(--ink);
+  1010→  transform: translateY(-2px);
+  1011→  box-shadow: var(--shadow-md);
+  1012→}
+  1013→
+  1014→.f-info-brand {
+  1015→  font-size: 0.8125rem;
+  1016→  color: var(--ink-3);
+  1017→  font-weight: 500;
+  1018→}
+  1019→
+  1020→.f-info-links { gap: 1.5rem; margin-top: 0.5rem; }
+  1021→
+  1022→.f-info-links a {
+  1023→  text-decoration: none;
+  1024→  color: var(--ink-2);
+  1025→  font-size: 0.8125rem;
+  1026→  position: relative;
+  1027→  transition: color 0.18s var(--ease);
+  1028→}
+  1029→
+  1030→.f-info-links a:hover { color: var(--ink); }
+  1031→
+  1032→.f-info-links a + a::before {
+  1033→  content: "";
+  1034→  position: absolute;
+  1035→  left: -0.78rem;
+  1036→  top: 50%;
+  1037→  transform: translateY(-50%);
+  1038→  width: 1px;
+  1039→  height: 0.75rem;
+  1040→  background: var(--hairline-strong);
+  1041→}
+  1042→
+  1043→/* ============================================================
+  1044→   Small helpers
+  1045→   ============================================================ */
+  1046→
+  1047→.text-muted { color: var(--ink-3) !important; }
+  1048→.text-secondary { color: var(--ink-2) !important; }
+  1049→.text-primary { color: var(--blue-deep) !important; }
+  1050→
+  1051→hr {
+  1052→  border-top: 1px solid var(--hairline);
+  1053→  opacity: 1;
+  1054→}
+  1055→
+  1056→/* Star widget — soften to match the palette */
+  1057→.starability-basic label:hover,
+  1058→.starability-basic label:hover ~ label,
+  1059→.starability-basic input:checked ~ label {
+  1060→  color: var(--gold);
+  1061→}
+  1062→
