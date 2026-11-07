@@ -1,8 +1,8 @@
 "use client";
 
-import { GlobeIcon, HeartIcon, MapPinIcon, StarIcon } from "@/lib/wanderlust/icons";
-import type { Listing } from "@/lib/wanderlust/data";
-import { formatPrice, type CurrencyCode } from "@/lib/wanderlust/currency";
+import { GlobeIcon, HeartIcon, MapPinIcon, StarIcon } from "@/lib/travello/icons";
+import type { Listing } from "@/lib/travello/data";
+import { formatPrice, type CurrencyCode } from "@/lib/travello/currency";
 
 interface ListingGridProps {
   listings: Listing[];

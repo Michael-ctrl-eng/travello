@@ -1,5 +1,5 @@
 #!/bin/bash
-# WanderLust — fetch real destination photos via z-ai image-search (concurrent, stdout capture)
+# Travello — fetch real destination photos via z-ai image-search (concurrent, stdout capture)
 OUT=/home/z/my-project/scripts/imgs
 mkdir -p "$OUT"
 

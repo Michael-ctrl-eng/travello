@@ -6,8 +6,8 @@ import {
   GlobeIcon,
   StarIcon,
   UsersIcon,
-} from "@/lib/wanderlust/icons";
-import { COLLECTIONS, SANCTUARY_IMAGE, type FilterId } from "@/lib/wanderlust/data";
+} from "@/lib/travello/icons";
+import { COLLECTIONS, SANCTUARY_IMAGE, type FilterId } from "@/lib/travello/data";
 
 /* ============================================================
    Collections band — Blacklane's "Arrive at your best" cards
@@ -178,7 +178,7 @@ export function Excellence() {
 
 export function TrustStrip() {
   return (
-    <section className="wl-trust-strip" aria-label="Why book with WanderLust">
+    <section className="wl-trust-strip" aria-label="Why book with Travello">
       <div className="wl-container">
         <div className="wl-trust-row">
           <span className="wl-trust-item">

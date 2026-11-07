@@ -1,7 +1,7 @@
 "use client";
 
-import { PlaneIcon } from "@/lib/wanderlust/icons";
-import type { FilterId } from "@/lib/wanderlust/data";
+import { PlaneIcon } from "@/lib/travello/icons";
+import type { FilterId } from "@/lib/travello/data";
 
 interface FooterProps {
   onPickFilter: (f: FilterId) => void;
@@ -56,7 +56,7 @@ export default function Footer({ onPickFilter, onPickDestination }: FooterProps)
         <div className="wl-footer-brand-row">
           <div className="wl-footer-brand">
             <PlaneIcon size={20} className="wl-footer-plane" />
-            <span className="wl-footer-word">WanderLust</span>
+            <span className="wl-footer-word">Travello</span>
             <span className="wl-footer-tag">Be a traveller.</span>
           </div>
           <div className="wl-footer-badges">
@@ -101,7 +101,7 @@ export default function Footer({ onPickFilter, onPickDestination }: FooterProps)
 
           <div className="wl-footer-col">
             <h4>Company</h4>
-            <a href="#top">About WanderLust</a>
+            <a href="#top">About Travello</a>
             <a href="#collections">Our collections</a>
             <a href="#sanctuary">The experience</a>
             <a href="#excellence">Sustainability</a>
@@ -120,7 +120,7 @@ export default function Footer({ onPickFilter, onPickDestination }: FooterProps)
 
         {/* Bottom bar */}
         <div className="wl-footer-bottom">
-          <p>© {new Date().getFullYear()} WanderLust. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Travello. All rights reserved.</p>
           <div className="wl-social" aria-label="Social media">
             <SocialButton
               label="LinkedIn"

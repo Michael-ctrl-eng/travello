@@ -1,20 +1,20 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Navbar from "@/components/wanderlust/navbar";
-import Hero from "@/components/wanderlust/hero";
+import Navbar from "@/components/travello/navbar";
+import Hero from "@/components/travello/hero";
 import {
   Collections,
   Excellence,
   Sanctuary,
   TrustStrip,
-} from "@/components/wanderlust/landing-sections";
-import FilterRail from "@/components/wanderlust/filter-rail";
-import ListingGrid from "@/components/wanderlust/listing-grid";
-import ListingModal from "@/components/wanderlust/listing-modal";
-import Footer from "@/components/wanderlust/footer";
-import { listings, type FilterId, type Listing } from "@/lib/wanderlust/data";
-import { DEFAULT_CURRENCY, type CurrencyCode } from "@/lib/wanderlust/currency";
+} from "@/components/travello/landing-sections";
+import FilterRail from "@/components/travello/filter-rail";
+import ListingGrid from "@/components/travello/listing-grid";
+import ListingModal from "@/components/travello/listing-modal";
+import Footer from "@/components/travello/footer";
+import { listings, type FilterId, type Listing } from "@/lib/travello/data";
+import { DEFAULT_CURRENCY, type CurrencyCode } from "@/lib/travello/currency";
 
 function isoDay(offsetDays: number): string {
   const d = new Date();
@@ -22,7 +22,7 @@ function isoDay(offsetDays: number): string {
   return d.toISOString().slice(0, 10);
 }
 
-export default function WanderLustPage() {
+export default function TravelloPage() {
   const [currency, setCurrency] = useState<CurrencyCode>(DEFAULT_CURRENCY);
   const [filter, setFilter] = useState<FilterId | "all">("all");
   const [showTax, setShowTax] = useState(false);

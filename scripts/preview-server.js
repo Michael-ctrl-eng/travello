@@ -1,5 +1,5 @@
 /**
- * Preview harness — renders the REAL WanderLust EJS views + CSS with mock
+ * Preview harness — renders the REAL Travello EJS views + CSS with mock
  * data (no MongoDB required) so the Apple Edition theme can be visually
  * verified in a headless browser.
  */
@@ -7,7 +7,7 @@ const express = require("express");
 const ejsMate = require("ejs-mate");
 const path = require("path");
 
-const base = path.join(__dirname, "..", "wanderlust");
+const base = path.join(__dirname, "..", "travello");
 const { CURRENCIES, DEFAULT_CURRENCY, formatPrice } = require(path.join(base, "utils", "currency.js"));
 
 const app = express();

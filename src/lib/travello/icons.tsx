@@ -1,5 +1,5 @@
 /**
- * WanderLust icon set — handcrafted, SF-Symbols-inspired duotone glyphs.
+ * Travello icon set — handcrafted, SF-Symbols-inspired duotone glyphs.
  * Solid fills with soft two-tone accents, rounded joins.
  * No third-party icon fonts, no generic stroke icons.
  */

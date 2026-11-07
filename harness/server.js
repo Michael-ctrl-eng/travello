@@ -1,13 +1,13 @@
 /**
- * Preview harness — renders the REAL wanderlust views with mock data
+ * Preview harness — renders the REAL travello views with mock data
  * so the new Apple theme can be verified without MongoDB/Cloudinary/Mapbox.
- * This file is NOT part of the wanderlust repo.
+ * This file is NOT part of the travello repo.
  */
 const express = require("express");
 const path = require("path");
 const ejsMate = require("ejs-mate");
 
-const REPO = path.join(__dirname, "..", "wanderlust");
+const REPO = path.join(__dirname, "..", "travello");
 
 const app = express();
 app.engine("ejs", ejsMate);

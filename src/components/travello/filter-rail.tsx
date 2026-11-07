@@ -13,9 +13,9 @@ import {
   SnowflakeIcon,
   TentIcon,
   WavesIcon,
-} from "@/lib/wanderlust/icons";
+} from "@/lib/travello/icons";
 import type { ComponentType } from "react";
-import { FILTERS, type FilterId } from "@/lib/wanderlust/data";
+import { FILTERS, type FilterId } from "@/lib/travello/data";
 
 const FILTER_ICONS: Record<FilterId, ComponentType<{ size?: number }>> = {
   trending: FlameIcon,

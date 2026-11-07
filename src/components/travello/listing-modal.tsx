@@ -11,9 +11,9 @@ import {
   PlusIcon,
   StarIcon,
   UsersIcon,
-} from "@/lib/wanderlust/icons";
-import type { Listing } from "@/lib/wanderlust/data";
-import { convert, formatPrice, type CurrencyCode } from "@/lib/wanderlust/currency";
+} from "@/lib/travello/icons";
+import type { Listing } from "@/lib/travello/data";
+import { convert, formatPrice, type CurrencyCode } from "@/lib/travello/currency";
 
 interface ListingModalProps {
   listing: Listing;

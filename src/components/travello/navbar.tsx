@@ -7,8 +7,8 @@ import {
   MenuIcon,
   PlaneIcon,
   SearchIcon,
-} from "@/lib/wanderlust/icons";
-import type { CurrencyCode } from "@/lib/wanderlust/currency";
+} from "@/lib/travello/icons";
+import type { CurrencyCode } from "@/lib/travello/currency";
 
 interface NavbarProps {
   currency: CurrencyCode;
@@ -43,9 +43,9 @@ export default function Navbar({
   return (
     <nav className={`wl-navbar${scrolled ? " is-scrolled" : ""}`}>
       <div className="wl-navbar-inner">
-        <a className="wl-brand" href="#top" aria-label="WanderLust home">
+        <a className="wl-brand" href="#top" aria-label="Travello home">
           <PlaneIcon className="wl-logo" size={24} />
-          <span className="wl-brand-word">WanderLust</span>
+          <span className="wl-brand-word">Travello</span>
         </a>
 
         <div className="wl-nav-center">

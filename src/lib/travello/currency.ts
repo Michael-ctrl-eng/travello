@@ -1,5 +1,5 @@
 /**
- * WanderLust — Currency configuration
+ * Travello — Currency configuration
  * ------------------------------------
  * All listing prices are stored in US Dollars (USD).
  * The Egyptian Pound (EGP) is a display currency converted at a

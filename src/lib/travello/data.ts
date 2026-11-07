@@ -1,5 +1,5 @@
 /**
- * WanderLust — destination collection.
+ * Travello — destination collection.
  * Real places, real photography. Prices per night in USD;
  * EGP is a display conversion. Tags power the filter rail.
  */

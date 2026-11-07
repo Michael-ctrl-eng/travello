@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import "./wanderlust.css";
+import "./travello.css";
 import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = Geist({
@@ -22,11 +22,11 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "WanderLust — Be a Traveller",
+  title: "Travello — Be a Traveller",
   description:
     "Exceptional stays in real destinations — from the Pyramids of Giza and the Red Sea to Alaska, Hawaii and beyond. Prices in USD & EGP.",
   keywords: [
-    "WanderLust",
+    "Travello",
     "travel",
     "stays",
     "Egypt",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "USD",
     "EGP",
   ],
-  authors: [{ name: "WanderLust" }],
+  authors: [{ name: "Travello" }],
   icons: {
     icon: "/icon.svg",
   },

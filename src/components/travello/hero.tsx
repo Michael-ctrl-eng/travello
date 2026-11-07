@@ -7,8 +7,8 @@ import {
   PlusIcon,
   SearchIcon,
   StarIcon,
-} from "@/lib/wanderlust/icons";
-import { HERO_IMAGE } from "@/lib/wanderlust/data";
+} from "@/lib/travello/icons";
+import { HERO_IMAGE } from "@/lib/travello/data";
 
 export type SearchMode = "night" | "flexible";
 
