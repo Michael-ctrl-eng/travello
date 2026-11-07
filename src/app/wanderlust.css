@@ -1,0 +1,1287 @@
+/* ============================================================
+   WanderLust — Apple Edition · Obsidian Frost
+   Premium white theme · Deep glassmorphism · SF-inspired type
+   --------------------------------------------------------------
+   Design tokens
+     Ink ......... #1d1d1f (primary)  #6e6e73 (secondary)
+     Accent ...... Apple Blue #0071e3 (pill CTAs)
+     Glass ....... rgba(255,255,255,.62) + blur(24px) saturate(180%)
+     Hairlines ... rgba(0,0,0,.08)
+     Surfaces .... #fbfbfd page · #ffffff cards
+     Currency .... stored USD · EGP display toggle
+   ============================================================ */
+
+.wl-app {
+  /* Typography */
+  --wl-font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Ink scale (Apple system grays) */
+  --wl-ink: #1d1d1f;
+  --wl-ink-2: #6e6e73;
+  --wl-ink-3: #86868b;
+  --wl-ink-4: #aeaeb2;
+
+  /* Accent */
+  --wl-blue: #0071e3;
+  --wl-blue-hover: #0077ed;
+  --wl-blue-deep: #0066cc;
+  --wl-blue-soft: rgba(0, 113, 227, 0.12);
+
+  /* Semantic */
+  --wl-green: #34c759;
+  --wl-red: #ff3b30;
+  --wl-gold: #f5a623;
+
+  /* Surfaces & lines */
+  --wl-page: #fbfbfd;
+  --wl-hairline: rgba(0, 0, 0, 0.08);
+  --wl-hairline-strong: rgba(0, 0, 0, 0.14);
+
+  /* Glass recipe — heavier frost for the premium look */
+  --wl-glass-bg: rgba(255, 255, 255, 0.62);
+  --wl-glass-bg-strong: rgba(255, 255, 255, 0.82);
+  --wl-glass-border: rgba(255, 255, 255, 0.65);
+  --wl-glass-blur: saturate(180%) blur(24px);
+  --wl-glass-blur-lg: saturate(190%) blur(36px);
+  /* Specular sheen: crisp top edge + faint bottom bounce light */
+  --wl-glass-sheen: inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.28);
+
+  /* Radii */
+  --wl-r-sm: 10px;
+  --wl-r-md: 14px;
+  --wl-r-lg: 20px;
+  --wl-r-xl: 26px;
+  --wl-r-pill: 980px;
+
+  /* Elevation — triple-layer ambient shadows (premium depth) */
+  --wl-shadow-sm: 0 1px 1px rgba(16, 24, 40, 0.04), 0 2px 4px rgba(16, 24, 40, 0.04),
+    0 6px 16px rgba(16, 24, 40, 0.05);
+  --wl-shadow-md: 0 1px 2px rgba(16, 24, 40, 0.05), 0 8px 24px rgba(16, 24, 40, 0.08),
+    0 24px 48px -12px rgba(16, 24, 40, 0.12);
+  --wl-shadow-lg: 0 2px 4px rgba(16, 24, 40, 0.05), 0 12px 32px rgba(16, 24, 40, 0.1),
+    0 40px 80px -16px rgba(16, 24, 40, 0.18);
+  --wl-shadow-xl: 0 4px 8px rgba(16, 24, 40, 0.06), 0 20px 48px rgba(16, 24, 40, 0.12),
+    0 56px 112px -20px rgba(16, 24, 40, 0.24);
+  /* Colored ambient glows */
+  --wl-glow-blue: 0 1px 2px rgba(0, 82, 190, 0.32), 0 8px 24px rgba(0, 113, 227, 0.38),
+    0 20px 48px -12px rgba(0, 113, 227, 0.5);
+  --wl-glow-blue-hover: 0 2px 4px rgba(0, 82, 190, 0.35),
+    0 12px 32px rgba(0, 113, 227, 0.48), 0 28px 64px -12px rgba(0, 113, 227, 0.6);
+
+  /* Motion */
+  --wl-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --wl-ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+
+  /* ============================================================
+     Shell
+     ============================================================ */
+  font-family: var(--wl-font-sans);
+  letter-spacing: -0.01em;
+  color: var(--wl-ink);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--wl-page);
+  /* Ambient aurora wash — fixed, gives the frosted glass something to blur */
+  background-image:
+    radial-gradient(52rem 34rem at 8% -10%, rgba(0, 144, 255, 0.2), transparent 62%),
+    radial-gradient(44rem 30rem at 92% 26%, rgba(255, 95, 162, 0.16), transparent 60%),
+    radial-gradient(64rem 44rem at 55% 115%, rgba(112, 74, 255, 0.15), transparent 62%),
+    radial-gradient(40rem 28rem at -12% 68%, rgba(52, 199, 89, 0.12), transparent 60%),
+    radial-gradient(36rem 26rem at 102% 88%, rgba(255, 170, 60, 0.1), transparent 58%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.wl-app ::selection {
+  background: rgba(0, 113, 227, 0.18);
+  color: var(--wl-ink);
+}
+
+.wl-app :focus-visible {
+  outline: 3px solid rgba(0, 113, 227, 0.35);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.wl-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Entrance motion — quiet, Apple-keynote style */
+@keyframes wl-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wl-rise,
+.wl-app .rise {
+  animation: wl-rise 0.7s var(--wl-ease) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wl-app *,
+  .wl-app *::before,
+  .wl-app *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   Navbar — frosted glass, apple.com proportions
+   ============================================================ */
+
+.wl-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  min-height: 4.25rem;
+  background: rgba(255, 255, 255, 0.66);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  backdrop-filter: saturate(180%) blur(24px);
+  border-bottom: 1px solid var(--wl-hairline);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 8px 32px rgba(16, 24, 40, 0.06);
+}
+
+.wl-navbar-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  min-height: 4.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.wl-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.wl-logo {
+  color: var(--wl-blue);
+  width: 26px;
+  height: 26px;
+  filter: drop-shadow(0 2px 6px rgba(0, 113, 227, 0.28));
+  transition: transform 0.5s var(--wl-ease-spring);
+}
+
+.wl-brand:hover .wl-logo {
+  transform: rotate(90deg);
+}
+
+.wl-brand-word {
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--wl-ink);
+  white-space: nowrap;
+}
+
+.wl-nav-center {
+  display: flex;
+  align-items: center;
+  margin-left: 0.75rem;
+}
+
+.wl-nav-link {
+  color: var(--wl-ink-2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: var(--wl-r-pill);
+  padding: 0.375rem 0.85rem;
+  transition: color 0.18s var(--wl-ease), background-color 0.18s var(--wl-ease);
+  white-space: nowrap;
+}
+
+.wl-nav-link:hover {
+  color: var(--wl-ink);
+  background-color: rgba(0, 0, 0, 0.045);
+}
+
+.wl-nav-link-pill {
+  color: #fff;
+  background-color: var(--wl-blue);
+  box-shadow: 0 1px 2px rgba(0, 113, 227, 0.25);
+}
+
+.wl-nav-link-pill:hover {
+  background-color: var(--wl-blue-hover);
+  color: #fff;
+}
+
+.wl-nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: auto;
+}
+
+/* Spotlight-style search field */
+.wl-nav-search {
+  position: relative;
+  min-width: 220px;
+}
+
+.wl-search-input {
+  width: 100%;
+  border-radius: var(--wl-r-pill);
+  padding: 0.45rem 2.6rem 0.45rem 1.05rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: var(--wl-ink);
+  background-color: rgba(0, 0, 0, 0.045);
+  border: 1px solid transparent;
+  box-shadow: none;
+  transition: border-color 0.18s var(--wl-ease), background-color 0.18s var(--wl-ease),
+    box-shadow 0.18s var(--wl-ease);
+}
+
+.wl-search-input::placeholder {
+  color: var(--wl-ink-3);
+}
+
+.wl-search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.wl-search-input:focus {
+  outline: none;
+  background-color: #fff;
+  border-color: var(--wl-blue);
+  box-shadow: 0 0 0 4px var(--wl-blue-soft);
+}
+
+.wl-search-btn {
+  position: absolute;
+  right: 0.4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: var(--wl-ink-3);
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--wl-r-pill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.18s var(--wl-ease), background-color 0.18s var(--wl-ease);
+}
+
+.wl-search-btn:hover {
+  color: var(--wl-blue);
+  background: var(--wl-blue-soft);
+}
+
+/* ============================================================
+   Currency switch — iOS-style frosted segmented control
+   Sliding glass knob, USD <-> EGP.
+   ============================================================ */
+
+.wl-currency-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  margin: 0 0.35rem 0 0.55rem;
+  padding: 0.18rem;
+  border-radius: var(--wl-r-pill);
+  background: rgba(120, 120, 128, 0.12);
+  box-shadow: inset 0 1px 2px rgba(16, 24, 40, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  border: none;
+  flex-shrink: 0;
+}
+
+.wl-currency-knob {
+  position: absolute;
+  top: 0.18rem;
+  bottom: 0.18rem;
+  left: 0.18rem;
+  width: calc(50% - 0.18rem);
+  border-radius: var(--wl-r-pill);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.82));
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%);
+  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.14), 0 6px 16px rgba(16, 24, 40, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  transition: transform 0.32s var(--wl-ease-spring);
+  z-index: 1;
+}
+
+.wl-currency-switch[data-active="EGP"] .wl-currency-knob {
+  transform: translateX(100%);
+}
+
+.wl-currency-opt {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.32rem;
+  border: none;
+  background: transparent;
+  padding: 0.3rem 0.72rem;
+  font-size: 0.78rem;
+  font-weight: 650;
+  font-family: inherit;
+  letter-spacing: -0.01em;
+  color: var(--wl-ink-2);
+  border-radius: var(--wl-r-pill);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.22s var(--wl-ease), transform 0.22s var(--wl-ease);
+}
+
+.wl-currency-opt .wl-currency-glyph {
+  font-size: 0.82rem;
+}
+
+.wl-currency-opt.is-active {
+  color: var(--wl-ink);
+}
+
+.wl-currency-opt:not(.is-active):hover {
+  color: var(--wl-ink);
+}
+
+.wl-currency-opt:active {
+  transform: scale(0.94);
+}
+
+/* Burger + mobile sheet */
+.wl-burger {
+  display: none;
+  border: none;
+  background: transparent;
+  color: var(--wl-ink-2);
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: var(--wl-r-sm);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.18s var(--wl-ease), background-color 0.18s var(--wl-ease);
+}
+
+.wl-burger:hover {
+  color: var(--wl-ink);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.wl-mobile-sheet {
+  margin: 0 1.25rem 0.85rem;
+  padding: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: rgba(255, 255, 255, 0.72);
+  -webkit-backdrop-filter: var(--wl-glass-blur-lg);
+  backdrop-filter: var(--wl-glass-blur-lg);
+  border: 1px solid var(--wl-glass-border);
+  border-radius: var(--wl-r-lg);
+  box-shadow: var(--wl-shadow-lg), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  animation: wl-rise 0.4s var(--wl-ease) both;
+}
+
+.wl-mobile-sheet .wl-nav-link {
+  padding: 0.65rem 0.85rem;
+}
+
+.wl-mobile-sheet .wl-nav-link-pill {
+  display: inline-block;
+  text-align: center;
+  margin-top: 0.5rem;
+  padding: 0.55rem 1.4rem;
+}
+
+@media (max-width: 900px) {
+  .wl-hide-sm {
+    display: none;
+  }
+  .wl-burger {
+    display: inline-flex;
+  }
+  .wl-nav-search {
+    min-width: 140px;
+  }
+  .wl-currency-switch {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .wl-currency-opt .wl-currency-code {
+    display: none;
+  }
+  .wl-currency-opt {
+    padding: 0.3rem 0.6rem;
+  }
+  .wl-nav-search {
+    min-width: 0;
+    flex: 1;
+  }
+}
+
+/* ============================================================
+   Hero — product-page headline
+   ============================================================ */
+
+.wl-hero {
+  text-align: center;
+  max-width: 46rem;
+  margin: 3.25rem auto 2.5rem;
+  padding: 0 1rem;
+}
+
+.wl-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wl-ink-3);
+  margin-bottom: 0.9rem;
+}
+
+.wl-hero-title {
+  font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+  color: var(--wl-ink);
+  margin: 0 0 1rem;
+}
+
+.wl-hero-gradient {
+  background: linear-gradient(96deg, #0090ff 10%, #7d4aff 45%, #ff5f9e 90%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: wl-gradient-drift 7s var(--wl-ease) infinite alternate;
+}
+
+@keyframes wl-gradient-drift {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+.wl-hero-sub {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--wl-ink-2);
+  max-width: 34rem;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   Glass booking bar — specialized frosted field icons
+   ============================================================ */
+
+.wl-booking-bar {
+  margin-top: 2.25rem;
+  display: flex;
+  align-items: stretch;
+  gap: 0.25rem;
+  padding: 0.55rem 0.55rem 0.55rem 0.65rem;
+  border: 1px solid var(--wl-glass-border);
+  border-radius: var(--wl-r-xl);
+  background: var(--wl-glass-bg-strong);
+  -webkit-backdrop-filter: var(--wl-glass-blur-lg);
+  backdrop-filter: var(--wl-glass-blur-lg);
+  box-shadow: var(--wl-shadow-lg), var(--wl-glass-sheen);
+  text-align: left;
+}
+
+.wl-booking-divider {
+  width: 1px;
+  align-self: stretch;
+  margin: 0.55rem 0.1rem;
+  background: var(--wl-hairline);
+  flex-shrink: 0;
+}
+
+.wl-field {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.5rem 0.75rem 0.5rem 3.5rem;
+  border-radius: var(--wl-r-md);
+  cursor: text;
+  transition: background-color 0.2s var(--wl-ease);
+}
+
+.wl-field:hover {
+  background-color: rgba(255, 255, 255, 0.45);
+}
+
+.wl-field:focus-within {
+  background-color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 0 4px var(--wl-blue-soft);
+}
+
+.wl-field label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--wl-ink-3);
+  margin-bottom: 0.1rem;
+}
+
+.wl-field input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 550;
+  color: var(--wl-ink);
+  padding: 0;
+  outline: none;
+}
+
+.wl-field input::placeholder {
+  color: var(--wl-ink-4);
+  font-weight: 450;
+}
+
+.wl-field input::-webkit-calendar-picker-indicator {
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+/* Specialized glass field icon tiles — iOS-Settings-style,
+   each field type glows in its own hue */
+.wl-field-icon {
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.35rem;
+  height: 2.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.8rem;
+  color: var(--wl-ink-2);
+  pointer-events: none;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.5));
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  backdrop-filter: blur(10px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+  transition: transform 0.24s var(--wl-ease-spring), box-shadow 0.24s var(--wl-ease),
+    color 0.24s var(--wl-ease);
+  z-index: 2;
+}
+
+.wl-field-icon--cyan {
+  color: #0e8fc0;
+  background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(100, 210, 255, 0.18));
+  box-shadow: 0 4px 14px rgba(100, 210, 255, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+.wl-field-icon--green {
+  color: #1e9e40;
+  background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(48, 209, 88, 0.16));
+  box-shadow: 0 4px 14px rgba(48, 209, 88, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+.wl-field-icon--orange {
+  color: #d97c00;
+  background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(255, 159, 10, 0.18));
+  box-shadow: 0 4px 14px rgba(255, 159, 10, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+.wl-field-icon--violet {
+  color: #8e4ec6;
+  background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(191, 90, 242, 0.16));
+  box-shadow: 0 4px 14px rgba(191, 90, 242, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+.wl-field-icon--blue {
+  color: #0071e3;
+  background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(10, 132, 255, 0.16));
+  box-shadow: 0 4px 14px rgba(0, 113, 227, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+.wl-field-icon--pink {
+  color: #e02d50;
+  background-image: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(255, 55, 95, 0.15));
+  box-shadow: 0 4px 14px rgba(255, 55, 95, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Focus interaction — the tile ignites when its field is focused */
+.wl-field:focus-within .wl-field-icon {
+  transform: translateY(-50%) scale(1.09);
+  box-shadow: 0 8px 22px rgba(16, 24, 40, 0.16),
+    0 0 0 3px rgba(255, 255, 255, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* ============================================================
+   Apple pill buttons
+   ============================================================ */
+
+.wl-btn {
+  border-radius: var(--wl-r-pill);
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: transform 0.2s var(--wl-ease), background-color 0.2s var(--wl-ease),
+    box-shadow 0.2s var(--wl-ease), border-color 0.2s var(--wl-ease), color 0.2s var(--wl-ease);
+}
+
+.wl-btn:active {
+  transform: scale(0.97);
+}
+
+.wl-btn-apple {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--wl-blue);
+  background-image: linear-gradient(180deg, #0a84ff 0%, #0066d6 100%);
+  border: 1px solid rgba(0, 70, 160, 0.24);
+  color: #fff;
+  padding: 0.6rem 1.5rem;
+  box-shadow: var(--wl-glow-blue), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  text-shadow: 0 1px 1px rgba(0, 40, 100, 0.18);
+}
+
+/* Specular shine sweep on hover — the "insanely great" detail */
+.wl-btn-apple::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.38) 50%,
+    transparent 68%
+  );
+  transform: translateX(-130%);
+  pointer-events: none;
+}
+
+.wl-btn-apple:hover::after,
+.wl-btn-apple:focus-visible::after {
+  transform: translateX(130%);
+  transition: transform 0.85s var(--wl-ease);
+}
+
+.wl-btn-apple:hover,
+.wl-btn-apple:focus {
+  background-color: var(--wl-blue-hover);
+  background-image: linear-gradient(180deg, #148aff 0%, #0071e3 100%);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--wl-glow-blue-hover), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.wl-booking-search {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  align-self: center;
+  padding: 0.85rem 1.6rem;
+  flex-shrink: 0;
+  margin-left: 0.25rem;
+}
+
+/* Hero trust chips */
+.wl-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.75rem;
+}
+
+.wl-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--wl-ink-2);
+  padding: 0.42rem 0.95rem;
+  border-radius: var(--wl-r-pill);
+  background: var(--wl-glass-bg);
+  -webkit-backdrop-filter: var(--wl-glass-blur);
+  backdrop-filter: var(--wl-glass-blur);
+  border: 1px solid var(--wl-glass-border);
+  box-shadow: var(--wl-shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.wl-chip-star {
+  color: var(--wl-gold);
+  fill: var(--wl-gold);
+}
+
+/* ============================================================
+   Filter rail & tax toggle — one segmented frosted toolbar
+   ============================================================ */
+
+.wl-filters-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 1.25rem 0 1.75rem;
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--wl-glass-border);
+  border-radius: var(--wl-r-pill);
+  background: var(--wl-glass-bg-strong);
+  -webkit-backdrop-filter: var(--wl-glass-blur);
+  backdrop-filter: var(--wl-glass-blur);
+  box-shadow: var(--wl-shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.wl-filters-container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.wl-filters {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-left: 0.25rem;
+  /* Apple-style edge fade — hints the rail scrolls */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 1.25rem,
+    #000 calc(100% - 1.25rem),
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 1.25rem,
+    #000 calc(100% - 1.25rem),
+    transparent
+  );
+}
+
+.wl-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.wl-filter {
+  text-align: center;
+  margin-right: 0.75rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--wl-r-pill);
+  opacity: 0.75;
+  cursor: pointer;
+  color: var(--wl-ink-2);
+  background: transparent;
+  border: 1px solid transparent;
+  font-family: inherit;
+  transition: all 0.22s var(--wl-ease);
+  flex-shrink: 0;
+}
+
+.wl-filter > div {
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wl-filter p {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin: 0.25rem 0 0;
+  color: var(--wl-ink-2);
+  white-space: nowrap;
+}
+
+.wl-filter:hover {
+  opacity: 1;
+  color: var(--wl-ink);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.wl-filter:hover p {
+  color: var(--wl-ink);
+}
+
+.wl-filter.is-active {
+  opacity: 1;
+  color: var(--wl-blue-deep);
+  background: var(--wl-blue-soft);
+  box-shadow: inset 0 0 0 1px rgba(0, 113, 227, 0.22);
+}
+
+.wl-filter.is-active p {
+  color: var(--wl-blue-deep);
+}
+
+.wl-rail-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--wl-ink-3);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.18s var(--wl-ease);
+}
+
+.wl-rail-btn:hover {
+  color: var(--wl-ink);
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.wl-tax-toggle {
+  border-left: 1px solid var(--wl-hairline);
+  padding: 0 0.5rem 0 1.25rem;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  margin-left: 0.25rem;
+  flex-shrink: 0;
+}
+
+.wl-switch-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* iOS-style green toggle */
+.wl-switch {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 46px;
+  height: 28px;
+  border-radius: 999px;
+  background: rgba(120, 120, 128, 0.22);
+  border: 1px solid var(--wl-hairline-strong);
+  cursor: pointer;
+  margin: 0;
+  transition: background-color 0.25s var(--wl-ease), border-color 0.25s var(--wl-ease);
+  flex-shrink: 0;
+}
+
+.wl-switch::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 1);
+  transition: transform 0.25s var(--wl-ease-spring);
+}
+
+.wl-switch:checked {
+  background: var(--wl-green);
+  border-color: var(--wl-green);
+}
+
+.wl-switch:checked::after {
+  transform: translateX(18px);
+}
+
+.wl-switch:focus-visible {
+  outline: 3px solid rgba(52, 199, 89, 0.35);
+  outline-offset: 2px;
+}
+
+.wl-tax-toggle label {
+  font-size: 0.8125rem;
+  color: var(--wl-ink-2);
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+}
+
+@media (max-width: 900px) {
+  .wl-filters-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: var(--wl-r-lg);
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+  .wl-tax-toggle {
+    justify-content: center;
+    border-left: none;
+    border-top: 1px solid var(--wl-hairline);
+    padding: 0.75rem 0 0.15rem;
+    margin-left: 0;
+  }
+}
+
+/* ============================================================
+   Listing cards — gallery tiles
+   ============================================================ */
+
+.wl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.25rem 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.wl-listing-link {
+  text-decoration: none;
+}
+
+.wl-card {
+  position: relative;
+  border: 1px solid var(--wl-glass-border);
+  overflow: hidden;
+  border-radius: var(--wl-r-lg);
+  background: var(--wl-glass-bg-strong);
+  -webkit-backdrop-filter: var(--wl-glass-blur);
+  backdrop-filter: var(--wl-glass-blur);
+  box-shadow: var(--wl-shadow-md), var(--wl-glass-sheen);
+  transition: transform 0.35s var(--wl-ease), box-shadow 0.35s var(--wl-ease);
+  animation: wl-rise 0.65s var(--wl-ease) both;
+  animation-delay: var(--d, 0ms);
+}
+
+.wl-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--wl-shadow-xl), var(--wl-glass-sheen),
+    0 24px 64px -16px rgba(0, 113, 227, 0.16);
+}
+
+.wl-card-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.wl-card-media img {
+  display: block;
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+  transition: transform 0.6s var(--wl-ease);
+}
+
+.wl-card:hover .wl-card-media img {
+  transform: scale(1.045);
+}
+
+.wl-card-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  background: linear-gradient(180deg, transparent 40%, rgba(255, 255, 255, 0.35));
+}
+
+.wl-card:hover .wl-card-overlay {
+  opacity: 1;
+}
+
+/* Floating glass price chip over the card image */
+.wl-price-chip {
+  position: absolute;
+  left: 0.9rem;
+  bottom: 0.9rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  padding: 0.42rem 0.85rem;
+  border-radius: var(--wl-r-pill);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.55));
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.18), 0 2px 6px rgba(16, 24, 40, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  color: var(--wl-ink);
+  transition: transform 0.3s var(--wl-ease-spring), box-shadow 0.3s var(--wl-ease);
+}
+
+.wl-price-bolt {
+  align-self: center;
+  color: #d97c00;
+  filter: drop-shadow(0 1px 2px rgba(255, 159, 10, 0.4));
+}
+
+.wl-price-amount {
+  font-size: 0.98rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.wl-price-unit {
+  font-size: 0.72rem;
+  font-weight: 550;
+  color: var(--wl-ink-2);
+  white-space: nowrap;
+}
+
+.wl-tax-info {
+  font-style: normal;
+  font-size: 0.68rem;
+  color: var(--wl-ink-2);
+}
+
+.wl-card:hover .wl-price-chip {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 14px 36px rgba(16, 24, 40, 0.22), 0 4px 10px rgba(16, 24, 40, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98);
+}
+
+/* Rating chip — top right */
+.wl-rating-chip {
+  position: absolute;
+  right: 0.9rem;
+  top: 0.9rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.34rem 0.7rem;
+  border-radius: var(--wl-r-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.55));
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  color: var(--wl-ink);
+}
+
+.wl-rating-chip svg {
+  color: var(--wl-gold);
+  fill: var(--wl-gold);
+}
+
+.wl-card-body {
+  padding: 1rem 1.15rem 1.15rem;
+}
+
+.wl-card-title {
+  font-size: 1.0625rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: var(--wl-ink);
+  margin: 0 0 0.2rem;
+  transition: color 0.18s var(--wl-ease);
+}
+
+.wl-listing-link:hover .wl-card-title {
+  color: var(--wl-blue-deep);
+}
+
+.wl-card-location {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8125rem;
+  color: var(--wl-ink-3);
+  margin: 0;
+}
+
+/* Empty state */
+.wl-empty {
+  text-align: center;
+  padding: 4rem 1rem;
+  margin: 0 auto 2rem;
+  max-width: 30rem;
+  border: 1px solid var(--wl-glass-border);
+  border-radius: var(--wl-r-xl);
+  background: var(--wl-glass-bg);
+  -webkit-backdrop-filter: var(--wl-glass-blur);
+  backdrop-filter: var(--wl-glass-blur);
+  box-shadow: var(--wl-shadow-md), var(--wl-glass-sheen);
+}
+
+.wl-empty h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--wl-ink);
+  margin: 0 0 0.5rem;
+}
+
+.wl-empty p {
+  color: var(--wl-ink-2);
+  margin: 0;
+}
+
+/* ============================================================
+   Footer — legal strip, frosted
+   ============================================================ */
+
+.wl-footer {
+  margin-top: 2rem;
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: var(--wl-glass-blur);
+  backdrop-filter: var(--wl-glass-blur);
+  border-top: 1px solid var(--wl-hairline);
+}
+
+.wl-footer-inner {
+  text-align: center;
+  min-height: 7.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-evenly;
+  padding: 1.75rem 1rem;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.wl-footer-socials {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.wl-social {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--wl-ink-2);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.45));
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  transition: all 0.22s var(--wl-ease);
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.wl-social:hover {
+  color: var(--wl-ink);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(16, 24, 40, 0.14), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.wl-footer-links {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.wl-footer-links a {
+  text-decoration: none;
+  color: var(--wl-ink-2);
+  font-size: 0.8125rem;
+  position: relative;
+  transition: color 0.18s var(--wl-ease);
+}
+
+.wl-footer-links a:hover {
+  color: var(--wl-ink);
+}
+
+.wl-footer-links a + a::before {
+  content: "";
+  position: absolute;
+  left: -0.78rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 0.75rem;
+  background: var(--wl-hairline-strong);
+}
+
+.wl-footer-brand {
+  width: 100%;
+  font-size: 0.8125rem;
+  color: var(--wl-ink-3);
+  font-weight: 500;
+  margin-top: 0.6rem;
+}
+
+/* ============================================================
+   Responsive booking bar
+   ============================================================ */
+
+@media (max-width: 860px) {
+  .wl-booking-bar {
+    flex-direction: column;
+    padding: 0.75rem;
+    gap: 0.15rem;
+  }
+
+  .wl-booking-divider {
+    width: auto;
+    height: 1px;
+    margin: 0.2rem 3.5rem 0.2rem 0.9rem;
+    align-self: stretch;
+  }
+
+  .wl-field {
+    padding: 0.65rem 0.75rem 0.65rem 3.5rem;
+  }
+
+  .wl-booking-search {
+    width: 100%;
+    margin: 0.5rem 0 0.15rem;
+    padding: 0.85rem 1.6rem;
+  }
+}
