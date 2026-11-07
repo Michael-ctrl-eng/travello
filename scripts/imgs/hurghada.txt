@@ -1,0 +1,26 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "Hurghada Red Sea resort beach with turquoise water Egypt"
+✅ Got 2 images
+{
+  "success": true,
+  "query": "Hurghada Red Sea resort beach with turquoise water Egypt",
+  "count": 2,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/1882b807d944.jpg",
+      "caption": "",
+      "source": "Love Holidays",
+      "original_width": "1920px",
+      "original_height": "570px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/73a9e4c04697.jpg",
+      "caption": "",
+      "source": "Egypt United Tours",
+      "original_width": "1200px",
+      "original_height": "683px"
+    }
+  ]
+}

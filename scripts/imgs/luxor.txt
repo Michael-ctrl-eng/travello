@@ -1,0 +1,26 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "Luxor Temple and the Nile river at sunset Egypt"
+✅ Got 2 images
+{
+  "success": true,
+  "query": "Luxor Temple and the Nile river at sunset Egypt",
+  "count": 2,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3c50b364b70e.jpg",
+      "caption": "",
+      "source": "Alamy",
+      "original_width": "1300px",
+      "original_height": "956px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/bff564df35af.jpg",
+      "caption": "",
+      "source": "Absolute Egypt",
+      "original_width": "1200px",
+      "original_height": "800px"
+    }
+  ]
+}

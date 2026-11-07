@@ -1,0 +1,26 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "Zermatt Matterhorn alpine chalet snow Switzerland"
+✅ Got 2 images
+{
+  "success": true,
+  "query": "Zermatt Matterhorn alpine chalet snow Switzerland",
+  "count": 2,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/feed5671f1dd.jpg",
+      "caption": "",
+      "source": "SopranoVillas",
+      "original_width": "1536px",
+      "original_height": "1024px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/502728efa5da.jpg",
+      "caption": "",
+      "source": "Family Ski Trips",
+      "original_width": "2400px",
+      "original_height": "1793px"
+    }
+  ]
+}

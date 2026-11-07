@@ -1,32 +1,33 @@
 "use client";
 
 import {
-  BedDouble,
-  Building2,
-  Castle,
-  ChevronLeft,
-  ChevronRight,
-  Flame,
-  MountainSnow,
-  Sailboat,
-  Snowflake,
-  Sprout,
-  Tent,
-  Waves,
-} from "lucide-react";
+  BedIcon,
+  CastleIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  CityIcon,
+  FlameIcon,
+  LeafIcon,
+  MountainIcon,
+  SailboatIcon,
+  SnowflakeIcon,
+  TentIcon,
+  WavesIcon,
+} from "@/lib/wanderlust/icons";
+import type { ComponentType } from "react";
 import { FILTERS, type FilterId } from "@/lib/wanderlust/data";
 
-const FILTER_ICONS: Record<FilterId, typeof Flame> = {
-  trending: Flame,
-  rooms: BedDouble,
-  cities: Building2,
-  mountains: MountainSnow,
-  castles: Castle,
-  pools: Waves,
-  camping: Tent,
-  farms: Sprout,
-  arctic: Snowflake,
-  boats: Sailboat,
+const FILTER_ICONS: Record<FilterId, ComponentType<{ size?: number }>> = {
+  trending: FlameIcon,
+  rooms: BedIcon,
+  cities: CityIcon,
+  mountains: MountainIcon,
+  castles: CastleIcon,
+  pools: WavesIcon,
+  camping: TentIcon,
+  farms: LeafIcon,
+  arctic: SnowflakeIcon,
+  boats: SailboatIcon,
 };
 
 interface FilterRailProps {
@@ -56,7 +57,7 @@ export default function FilterRail({
           onClick={() => scrollFilters(-200)}
           aria-label="Scroll filters left"
         >
-          <ChevronLeft size={16} aria-hidden="true" />
+          <ChevronLeftIcon size={16} />
         </button>
 
         <div id="wl-filters" className="wl-filters">
@@ -66,7 +67,7 @@ export default function FilterRail({
             onClick={() => onActiveChange("all")}
           >
             <div aria-hidden="true">
-              <Sparkle />
+              <GlobeGlyph />
             </div>
             <p>All</p>
           </button>
@@ -80,7 +81,7 @@ export default function FilterRail({
                 onClick={() => onActiveChange(f.id)}
               >
                 <div aria-hidden="true">
-                  <Icon size={17} strokeWidth={1.9} />
+                  <Icon size={17} />
                 </div>
                 <p>{f.label}</p>
               </button>
@@ -94,7 +95,7 @@ export default function FilterRail({
           onClick={() => scrollFilters(200)}
           aria-label="Scroll filters right"
         >
-          <ChevronRight size={16} aria-hidden="true" />
+          <ChevronRightIcon size={16} />
         </button>
       </div>
 
@@ -115,21 +116,21 @@ export default function FilterRail({
   );
 }
 
-/* tiny inline sparkles glyph for the "All" chip */
-function Sparkle() {
+/* Compact globe glyph for the "All" chip */
+function GlobeGlyph() {
   return (
     <svg
       width="17"
       height="17"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="currentColor"
-      strokeWidth="1.9"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
+      focusable="false"
     >
-      <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" />
+      <circle cx="12" cy="12" r="8.8" stroke="currentColor" strokeWidth="1.8" />
+      <ellipse cx="12" cy="12" rx="3.9" ry="8.8" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M3.2 12h17.6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
     </svg>
   );
 }

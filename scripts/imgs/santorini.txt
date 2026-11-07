@@ -1,0 +1,26 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "Santorini white houses blue domes overlooking the caldera Greece"
+✅ Got 2 images
+{
+  "success": true,
+  "query": "Santorini white houses blue domes overlooking the caldera Greece",
+  "count": 2,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/cdccb47e365d.jpg",
+      "caption": "",
+      "source": "Little Wanderblog",
+      "original_width": "1439px",
+      "original_height": "960px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/34c76644ea88.jpg",
+      "caption": "",
+      "source": "Dreamstime",
+      "original_width": "1600px",
+      "original_height": "1157px"
+    }
+  ]
+}

@@ -15,21 +15,24 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WanderLust · Apple Edition — Explore the world, beautifully",
+  title: "WanderLust — Be a Traveller",
   description:
-    "WanderLust Apple Edition: exceptional stays in the world's most breathtaking destinations. Prices in USD & EGP. Premium white theme with deep glassmorphism.",
+    "Exceptional stays in real destinations — from the Pyramids of Giza and the Red Sea to Alaska, Hawaii and beyond. Prices in USD & EGP.",
   keywords: [
     "WanderLust",
     "travel",
     "stays",
-    "Apple Edition",
-    "glassmorphism",
+    "Egypt",
+    "Pyramids",
+    "Hurghada",
+    "Alaska",
+    "Hawaii",
     "USD",
     "EGP",
   ],
   authors: [{ name: "WanderLust" }],
   icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
+    icon: "/icon.svg",
   },
 };
 

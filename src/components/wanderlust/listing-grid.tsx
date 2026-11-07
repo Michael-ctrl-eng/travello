@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPin, Star, Zap } from "lucide-react";
+import { GlobeIcon, HeartIcon, MapPinIcon, StarIcon } from "@/lib/wanderlust/icons";
 import type { Listing } from "@/lib/wanderlust/data";
 import { formatPrice, type CurrencyCode } from "@/lib/wanderlust/currency";
 
@@ -9,6 +9,10 @@ interface ListingGridProps {
   currency: CurrencyCode;
   showTax: boolean;
   query: string;
+  saved: ReadonlySet<string>;
+  savedOnly: boolean;
+  onOpen: (listing: Listing) => void;
+  onToggleSave: (id: string) => void;
 }
 
 export default function ListingGrid({
@@ -16,65 +20,99 @@ export default function ListingGrid({
   currency,
   showTax,
   query,
+  saved,
+  savedOnly,
+  onOpen,
+  onToggleSave,
 }: ListingGridProps) {
   if (listings.length === 0) {
     return (
       <div className="wl-empty">
-        <h3>No stays found</h3>
-        <p>
-          {query
-            ? `Nothing matches “${query}”. Try another destination.`
-            : "Try a different filter."}
-        </p>
+        <span className="wl-empty-icon" aria-hidden="true">
+          <GlobeIcon size={26} />
+        </span>
+        {savedOnly && saved.size === 0 ? (
+          <>
+            <h3>Nothing saved yet</h3>
+            <p>Tap the heart on any stay to keep it here.</p>
+          </>
+        ) : (
+          <>
+            <h3>No stays found</h3>
+            <p>
+              {query
+                ? `Nothing matches “${query}”. Try another destination.`
+                : "Try a different filter."}
+            </p>
+          </>
+        )}
       </div>
     );
   }
 
   return (
     <div className="wl-grid" id="collection">
-      {listings.map((listing, i) => (
-        <a
-          key={listing.id}
-          href="#collection"
-          className="wl-listing-link"
-          aria-label={`${listing.title}, ${listing.location}, ${formatPrice(listing.price, currency)} per night`}
-        >
-          <article
-            className="wl-card"
+      {listings.map((listing, i) => {
+        const isSaved = saved.has(listing.id);
+        return (
+          <div
+            key={listing.id}
+            className="wl-card-wrap"
             style={{ ["--d" as string]: `${(i % 6) * 60}ms` }}
           >
-            <div className="wl-card-media">
-              <img src={listing.image} alt={listing.title} loading="lazy" />
-              <div className="wl-card-overlay" aria-hidden="true" />
+            <button
+              type="button"
+              className="wl-card-btn"
+              onClick={() => onOpen(listing)}
+              aria-label={`View ${listing.title}, ${listing.location}, ${formatPrice(listing.price, currency)} per night`}
+            >
+              <article className="wl-card">
+                <div className="wl-card-media">
+                  <img src={listing.image} alt={listing.title} loading="lazy" />
+                  <div className="wl-card-overlay" aria-hidden="true" />
 
-              {/* Glass price chip floating on the image */}
-              <span className="wl-price-chip">
-                <Zap size={11} className="wl-price-bolt" aria-hidden="true" />
-                <span className="wl-price-amount">
-                  {formatPrice(listing.price, currency)}
-                </span>
-                <span className="wl-price-unit">
-                  / night
-                  {showTax && <i className="wl-tax-info">&nbsp;+ 14% VAT</i>}
-                </span>
-              </span>
+                  {/* Glass price chip floating on the image */}
+                  <span className="wl-price-chip">
+                    <span className="wl-price-amount">
+                      {formatPrice(listing.price, currency)}
+                    </span>
+                    <span className="wl-price-unit">
+                      / night
+                      {showTax && <i className="wl-tax-info">&nbsp;+ 14% VAT</i>}
+                    </span>
+                  </span>
+                </div>
 
-              <span className="wl-rating-chip" title={`${listing.rating} rating`}>
-                <Star size={11} aria-hidden="true" />
-                {listing.rating.toFixed(2)}
-              </span>
-            </div>
+                <div className="wl-card-body">
+                  <h3 className="wl-card-title">{listing.title}</h3>
+                  <p className="wl-card-meta">
+                    <span className="wl-card-rating">
+                      <StarIcon size={12} className="wl-card-star" />
+                      {listing.rating.toFixed(2)}
+                      <em>({listing.reviews.toLocaleString("en-US")})</em>
+                    </span>
+                    <span className="wl-card-place">
+                      <MapPinIcon size={12} />
+                      {listing.location}, {listing.country}
+                    </span>
+                  </p>
+                </div>
+              </article>
+            </button>
 
-            <div className="wl-card-body">
-              <h3 className="wl-card-title">{listing.title}</h3>
-              <p className="wl-card-location">
-                <MapPin size={12} aria-hidden="true" />
-                {listing.location}, {listing.country}
-              </p>
-            </div>
-          </article>
-        </a>
-      ))}
+            {/* Save heart — glass chip, pops when toggled */}
+            <button
+              type="button"
+              className={`wl-heart-chip${isSaved ? " is-saved" : ""}`}
+              aria-pressed={isSaved}
+              aria-label={isSaved ? `Remove ${listing.title} from saved` : `Save ${listing.title}`}
+              onClick={() => onToggleSave(listing.id)}
+            >
+              <HeartIcon size={15} filled={isSaved} />
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 }

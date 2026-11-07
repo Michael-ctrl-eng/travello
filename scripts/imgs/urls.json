@@ -1,0 +1,49 @@
+{
+ "alaska": [
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9cd4bb70db4f.png",
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b843099eea35.jpg"
+ ],
+ "cappadocia": [
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8c05977fe4e9.jpg",
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d14ae3a5a0df.jpg"
+ ],
+ "giza": [
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3c0d35ab2491.webp",
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9bddc943593b.jpg"
+ ],
+ "hawaii": [
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7b0b8ead1814.jpeg",
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/24c866808c09.jpg"
+ ],
+ "hurghada": [
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/1882b807d944.jpg",
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/73a9e4c04697.jpg"
+ ],
+ "iceland": [
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c564d8e1bda9.jpg"
+ ],
+ "luxor": [
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3c50b364b70e.jpg",
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/bff564df35af.jpg"
+ ],
+ "maldives": [
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ed4b62ef7f55.jpg",
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/2061a8eb883f.jpg"
+ ],
+ "petra": [
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/784360d29f25.jpg",
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/27c47c8e8f51.jpg"
+ ],
+ "santorini": [
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/cdccb47e365d.jpg",
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/34c76644ea88.jpg"
+ ],
+ "tuscany": [
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/cec52259d3f6.jpg",
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/80e0aee2155c.jpg"
+ ],
+ "zermatt": [
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/feed5671f1dd.jpg",
+  "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/502728efa5da.jpg"
+ ]
+}

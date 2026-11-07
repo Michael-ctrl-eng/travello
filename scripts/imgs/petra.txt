@@ -1,0 +1,26 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "Petra the Treasury carved rock facade Jordan"
+✅ Got 2 images
+{
+  "success": true,
+  "query": "Petra the Treasury carved rock facade Jordan",
+  "count": 2,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/784360d29f25.jpg",
+      "caption": "",
+      "source": "Into Far Lands",
+      "original_width": "3000px",
+      "original_height": "2001px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/27c47c8e8f51.jpg",
+      "caption": "",
+      "source": "The Thrill of Pursuit",
+      "original_width": "1613px",
+      "original_height": "2048px"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "Hawaii Maui beach with palm trees and turquoise ocean"
+✅ Got 2 images
+{
+  "success": true,
+  "query": "Hawaii Maui beach with palm trees and turquoise ocean",
+  "count": 2,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7b0b8ead1814.jpeg",
+      "caption": "",
+      "source": "Pexels",
+      "original_width": "3814px",
+      "original_height": "5721px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/24c866808c09.jpg",
+      "caption": "",
+      "source": "Wallpaper Abyss - Alpha Coders",
+      "original_width": "1920px",
+      "original_height": "1200px"
+    }
+  ]
+}

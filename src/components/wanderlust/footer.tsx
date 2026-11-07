@@ -1,36 +1,19 @@
 "use client";
 
-import { Facebook, Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
-
-const socials = [
-  { Icon: Instagram, label: "Instagram" },
-  { Icon: Facebook, label: "Facebook" },
-  { Icon: Twitter, label: "Twitter" },
-  { Icon: Youtube, label: "YouTube" },
-  { Icon: Linkedin, label: "LinkedIn" },
-];
+import { PlaneIcon } from "@/lib/wanderlust/icons";
 
 export default function Footer() {
   return (
     <footer className="wl-footer">
       <div className="wl-footer-inner">
-        <div className="wl-footer-socials">
-          {socials.map(({ Icon, label }) => (
-            <a key={label} href="#top" aria-label={label} className="wl-social">
-              <Icon size={16} strokeWidth={1.9} aria-hidden="true" />
-            </a>
-          ))}
+        <div className="wl-footer-brand-row">
+          <PlaneIcon size={18} className="wl-footer-plane" />
+          <span className="wl-footer-word">WanderLust</span>
         </div>
-
-        <div className="wl-footer-links">
-          <a href="#top">Privacy</a>
-          <a href="#top">Terms</a>
-          <a href="#top">Sitemap</a>
-        </div>
-
-        <div className="wl-footer-brand">
-          © 2026 WanderLust · Apple Edition — crafted with obsessive attention to detail.
-        </div>
+        <p className="wl-footer-tag">Be a traveller.</p>
+        <p className="wl-footer-copy">
+          © {new Date().getFullYear()} WanderLust. All rights reserved.
+        </p>
       </div>
     </footer>
   );

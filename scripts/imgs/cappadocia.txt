@@ -1,0 +1,26 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "Cappadocia hot air balloons at sunrise over fairy chimneys Turkey"
+✅ Got 2 images
+{
+  "success": true,
+  "query": "Cappadocia hot air balloons at sunrise over fairy chimneys Turkey",
+  "count": 2,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8c05977fe4e9.jpg",
+      "caption": "",
+      "source": "daymaker.travel",
+      "original_width": "3072px",
+      "original_height": "4096px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d14ae3a5a0df.jpg",
+      "caption": "",
+      "source": "Travel.ninja",
+      "original_width": "1200px",
+      "original_height": "800px"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 /**
- * WanderLust — Currency configuration (Apple Edition)
- * ----------------------------------------------------
+ * WanderLust — Currency configuration
+ * ------------------------------------
  * All listing prices are stored in US Dollars (USD).
  * The Egyptian Pound (EGP) is a display currency converted at a
  * static reference rate (update EGP_PER_USD as needed).

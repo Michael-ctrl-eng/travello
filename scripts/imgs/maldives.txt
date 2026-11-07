@@ -1,0 +1,26 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "Maldives overwater bungalow villa on turquoise lagoon"
+✅ Got 2 images
+{
+  "success": true,
+  "query": "Maldives overwater bungalow villa on turquoise lagoon",
+  "count": 2,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ed4b62ef7f55.jpg",
+      "caption": "",
+      "source": "La Revue des Hôtels",
+      "original_width": "1400px",
+      "original_height": "840px"
+    },
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/2061a8eb883f.jpg",
+      "caption": "",
+      "source": "Oaga Art Resort",
+      "original_width": "1600px",
+      "original_height": "900px"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+🚀 Initializing Z-AI SDK...
+🔎 Searching images: "Iceland northern lights aurora over a cozy glass lodge"
+✅ Got 1 image
+{
+  "success": true,
+  "query": "Iceland northern lights aurora over a cozy glass lodge",
+  "count": 1,
+  "ranked": false,
+  "captioned_count": 0,
+  "results": [
+    {
+      "original_url": "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c564d8e1bda9.jpg",
+      "caption": "",
+      "source": "Expedia",
+      "original_width": "1200px",
+      "original_height": "800px"
+    }
+  ]
+}

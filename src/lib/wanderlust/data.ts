@@ -1,6 +1,7 @@
 /**
- * WanderLust — Sample collection (ported from init/data.js)
- * Prices are stored per-night in USD; tags power the filter rail.
+ * WanderLust — destination collection.
+ * Real places, real photography. Prices per night in USD;
+ * EGP is a display conversion. Tags power the filter rail.
  */
 
 export interface Listing {
@@ -12,7 +13,9 @@ export interface Listing {
   location: string;
   country: string;
   rating: number; // 0–5
+  reviews: number;
   tags: string[];
+  highlights: string[];
 }
 
 export const FILTERS = [
@@ -32,133 +35,171 @@ export type FilterId = (typeof FILTERS)[number]["id"];
 
 export const listings: Listing[] = [
   {
-    id: "taj-mahal-suite",
-    title: "Taj Mahal View Suite",
+    id: "giza-pyramids",
+    title: "Pyramids View Royal Camp",
     description:
-      "Enjoy breathtaking views of the historic Taj Mahal right from your private terrace. This luxury suite offers standard amenities and fine Indian hospitality.",
-    image:
-      "https://images.unsplash.com/photo-1564507592333-c60657eea523?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    price: 42,
-    location: "Agra",
-    country: "India",
-    rating: 4.94,
-    tags: ["trending", "cities"],
+      "Wake up facing the last standing Wonder of the Ancient World. A luxury desert camp with linen tents, terrace dining, and the Giza plateau lit up at your feet.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3c0d35ab2491.webp",
+    price: 65,
+    location: "Giza, Cairo",
+    country: "Egypt",
+    rating: 4.95,
+    reviews: 1284,
+    tags: ["trending", "castles", "camping"],
+    highlights: ["Guided Great Pyramid & Sphinx tour", "Sunset camel ride in the desert", "Terrace dinner facing the pyramids"],
   },
   {
-    id: "goa-beachfront-villa",
-    title: "Beachfront Luxury Villa in Goa",
+    id: "hurghada-reef",
+    title: "Hurghada Reef House",
     description:
-      "Step directly onto the sandy beaches of North Goa. Features a private pool, open sky showers, and a personal chef for the ultimate coastal vacation.",
-    image:
-      "https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    price: 77,
-    location: "Goa",
-    country: "India",
-    rating: 4.88,
-    tags: ["trending", "pools"],
+      "A private Red Sea villa steps from the coral reef. Morning snorkel with turtles, afternoon on your own stretch of turquoise, evenings grilling fresh catch on the dock.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/1882b807d944.jpg",
+    price: 84,
+    location: "Hurghada",
+    country: "Egypt",
+    rating: 4.89,
+    reviews: 962,
+    tags: ["trending", "pools", "boats"],
+    highlights: ["House reef snorkeling from the dock", "Giftun Island boat trip included", "Private pool & sea-view terrace"],
   },
   {
-    id: "manali-hilltop-cabin",
-    title: "Charming Hilltop Cabin",
+    id: "luxor-nile",
+    title: "Nilebank Suite, Luxor",
     description:
-      "Escape the heat in this cozy wooden cabin nestled in the snow-capped hills of Manali. Perfect for hiking and hot chocolate sessions.",
-    image:
-      "https://images.unsplash.com/photo-1502784444187-359ac186c5bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    price: 21,
-    location: "Manali",
-    country: "India",
-    rating: 4.79,
-    tags: ["mountains", "camping"],
-  },
-  {
-    id: "jaipur-royal-palace",
-    title: "Royal Heritage Palace Stay",
-    description:
-      "Live like royalty in a historic palace in the Pink City of Jaipur. Marvel at traditional artwork, inner courtyards, and grand architecture.",
-    image:
-      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    price: 54,
-    location: "Jaipur",
-    country: "India",
+      "A stone terrace suite on the West Bank of the Nile, feluccas drifting past Karnak's columns at dawn. Walk to the Valley of the Kings before the tour buses arrive.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3c50b364b70e.jpg",
+    price: 58,
+    location: "Luxor",
+    country: "Egypt",
     rating: 4.91,
-    tags: ["castles", "trending"],
+    reviews: 743,
+    tags: ["cities", "castles"],
+    highlights: ["Sunrise felucca on the Nile", "Private guide to Valley of the Kings", "Karnak sound-and-light show tickets"],
   },
   {
-    id: "mumbai-skyline-apartment",
-    title: "Modern Apartment with Skyline View",
+    id: "alaska-aurora",
+    title: "Denali Aurora Cabin",
     description:
-      "Stay in the heart of India's commercial capital. High-rise luxury apartment with panoramic views of the Mumbai skyline and Arabian sea.",
-    image:
-      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    price: 38,
-    location: "Mumbai",
-    country: "India",
-    rating: 4.72,
-    tags: ["cities", "rooms"],
-  },
-  {
-    id: "alleppey-houseboat",
-    title: "Alleppey Houseboat Experience",
-    description:
-      "Float down the peaceful backwaters of Kerala in a traditional luxury houseboat. Includes freshly caught sea bass and local delicacies.",
-    image:
-      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    price: 48,
-    location: "Alleppey, Kerala",
-    country: "India",
-    rating: 4.85,
-    tags: ["boats", "trending"],
-  },
-  {
-    id: "manhattan-penthouse",
-    title: "Luxury Penthouse in Manhattan",
-    description:
-      "Indulge in high-end living in New York City with Central Park views, marble flooring, and access to a private rooftop terrace.",
-    image:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    price: 113,
-    location: "New York City",
+      "A glass-roofed cabin two hours from Fairbanks. Wood stove, hot sauna, and a front-row seat when the sky catches fire over the Alaska Range.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9cd4bb70db4f.png",
+    price: 132,
+    location: "Denali, Alaska",
     country: "United States",
     rating: 4.97,
-    tags: ["rooms", "cities", "trending"],
+    reviews: 1587,
+    tags: ["trending", "arctic", "mountains", "camping"],
+    highlights: ["Glass roof for northern-light viewing", "Private wood-fired sauna", "Dog-sledding day trip"],
   },
   {
-    id: "paris-eiffel-studio",
-    title: "Chic Studio near Eiffel Tower",
+    id: "hawaii-maui",
+    title: "Maui Cliffside Bungalow",
     description:
-      "A cozy, sunlit studio located in the 7th arrondissement of Paris, just a 5-minute walk from the Eiffel Tower and local bistros.",
-    image:
-      "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    price: 60,
-    location: "Paris",
-    country: "France",
-    rating: 4.83,
-    tags: ["rooms", "cities"],
+      "Perched above a black-sand cove on the Road to Hana. Whale watching from the hammock, banana bread a valley away, and waterfalls you will have to yourself.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7b0b8ead1814.jpeg",
+    price: 149,
+    location: "Maui, Hawaii",
+    country: "United States",
+    rating: 4.93,
+    reviews: 2031,
+    tags: ["trending", "pools", "boats"],
+    highlights: ["Infinity pool over the Pacific", "Guided Hana waterfall hike", "Snorkel gear & kayaks included"],
   },
   {
-    id: "kyoto-traditional-ryokan",
-    title: "Traditional Ryokan in Kyoto",
+    id: "santorini-caldera",
+    title: "Santorini Cave House",
     description:
-      "Unwind on tatami mats and enjoy private hot spring onsens in a historic district of Kyoto. Perfect for a mindful, cultural experience.",
-    image:
-      "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    price: 57,
-    location: "Kyoto",
-    country: "Japan",
+      "A whitewashed cave house carved into the caldera wall in Oia. Private plunge pool, blue domes next door, and the best sunset in the Aegean from your own terrace.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/cdccb47e365d.jpg",
+    price: 96,
+    location: "Oia, Santorini",
+    country: "Greece",
+    rating: 4.88,
+    reviews: 1712,
+    tags: ["cities", "rooms", "pools"],
+    highlights: ["Caldera-view plunge pool", "Sunset terrace above Oia", "Catamaran cruise with dinner"],
+  },
+  {
+    id: "cappadocia-balloons",
+    title: "Cappadocia Balloon Lodge",
+    description:
+      "A cave suite in Göreme where one hundred hot-air balloons rise past your window at dawn. Solar-heated stone rooms, terrace breakfast, valleys out the back door.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/8c05977fe4e9.jpg",
+    price: 73,
+    location: "Göreme, Cappadocia",
+    country: "Türkiye",
+    rating: 4.92,
+    reviews: 1198,
+    tags: ["trending", "rooms", "camping"],
+    highlights: ["Sunrise balloon-flight pickup", "Carved cave suite with skylight", "Red Valley e-bike tour"],
+  },
+  {
+    id: "iceland-lodge",
+    title: "Aurora Glass Lodge, Iceland",
+    description:
+      "A remote glass lodge under the aurora oval, an hour from Reykjavík. Geothermal hot tub, black-sand coast nearby, and silence you can hear.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c564d8e1bda9.jpg",
+    price: 118,
+    location: "South Coast, Iceland",
+    country: "Iceland",
     rating: 4.96,
-    tags: ["trending", "rooms"],
+    reviews: 1355,
+    tags: ["arctic", "camping", "mountains"],
+    highlights: ["Panoramic glass bedroom", "Geothermal hot tub", "Glacier lagoon & ice-cave tour"],
   },
   {
-    id: "borabora-overwater-bungalow",
-    title: "Overwater Bungalow in Bora Bora",
+    id: "maldives-lagoon",
+    title: "Maldives Overwater Villa",
     description:
-      "Wake up to turquoise lagoon waters directly below your bedroom. Features glass floor view portals and private lagoon swim docks.",
-    image:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=60",
-    price: 143,
-    location: "Bora Bora",
-    country: "French Polynesia",
-    rating: 4.99,
-    tags: ["pools", "boats", "trending"],
+      "A thatched overwater villa on a private lagoon. Glass floor panels, a ladder straight into the reef, and a chef who asks what you caught today.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/ed4b62ef7f55.jpg",
+    price: 210,
+    location: "North Malé Atoll",
+    country: "Maldives",
+    rating: 4.98,
+    reviews: 2467,
+    tags: ["trending", "pools", "boats"],
+    highlights: ["Glass floor over the lagoon", "Private butler & seaplane transfer", "Night snorkeling with manta rays"],
+  },
+  {
+    id: "zermatt-chalet",
+    title: "Matterhorn View Chalet",
+    description:
+      "A timber chalet above Zermatt with the Matterhorn framed in every window. Ski-in access, raclette fireplace, and a spa that faces the north face.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/feed5671f1dd.jpg",
+    price: 145,
+    location: "Zermatt",
+    country: "Switzerland",
+    rating: 4.94,
+    reviews: 1093,
+    tags: ["mountains", "rooms", "arctic"],
+    highlights: ["Ski-in / ski-out in winter", "Alpine spa with Matterhorn view", "Gornergrat railway sunrise trip"],
+  },
+  {
+    id: "petra-treasury",
+    title: "Petra Cliff Retreat",
+    description:
+      "A stone retreat in the hills above Wadi Musa, ten minutes from the Siq. Bedouin hosts, candlelit Petra by Night, and trails into the desert from the garden.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/784360d29f25.jpg",
+    price: 89,
+    location: "Wadi Musa, Petra",
+    country: "Jordan",
+    rating: 4.9,
+    reviews: 867,
+    tags: ["castles", "cities", "camping"],
+    highlights: ["Petra by Night candlelit entry", "Bedouin desert dinner", "Little Petra & Wadi Rum day tour"],
+  },
+  {
+    id: "tuscany-farmhouse",
+    title: "Tuscan Farmhouse Estate",
+    description:
+      "A restored farmhouse on a working olive estate outside Siena. Cypress-lined drive, a long table under the pergola, and a pool that glows at golden hour.",
+    image: "https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/cec52259d3f6.jpg",
+    price: 67,
+    location: "Siena, Tuscany",
+    country: "Italy",
+    rating: 4.87,
+    reviews: 1421,
+    tags: ["farms", "rooms", "pools"],
+    highlights: ["Olive-oil & wine tasting on site", "Truffle hunting in autumn", "Cooking class with the estate chef"],
   },
 ];

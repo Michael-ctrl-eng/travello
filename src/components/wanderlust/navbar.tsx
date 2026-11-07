@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Compass, Menu, Search, X } from "lucide-react";
+import {
+  CloseIcon,
+  HeartIcon,
+  MenuIcon,
+  PlaneIcon,
+  SearchIcon,
+} from "@/lib/wanderlust/icons";
 import type { CurrencyCode } from "@/lib/wanderlust/currency";
 
 interface NavbarProps {
@@ -9,6 +15,9 @@ interface NavbarProps {
   onCurrencyChange: (c: CurrencyCode) => void;
   query: string;
   onQueryChange: (q: string) => void;
+  savedCount: number;
+  showSaved: boolean;
+  onToggleSaved: () => void;
 }
 
 export default function Navbar({
@@ -16,6 +25,9 @@ export default function Navbar({
   onCurrencyChange,
   query,
   onQueryChange,
+  savedCount,
+  showSaved,
+  onToggleSaved,
 }: NavbarProps) {
   const [open, setOpen] = useState(false);
 
@@ -23,7 +35,7 @@ export default function Navbar({
     <nav className="wl-navbar">
       <div className="wl-navbar-inner">
         <a className="wl-brand" href="#top" aria-label="WanderLust home">
-          <Compass className="wl-logo" strokeWidth={1.8} aria-hidden="true" />
+          <PlaneIcon className="wl-logo" size={26} />
           <span className="wl-brand-word">WanderLust</span>
         </a>
 
@@ -48,11 +60,24 @@ export default function Navbar({
               onChange={(e) => onQueryChange(e.target.value)}
             />
             <button className="wl-search-btn" type="submit" aria-label="Search">
-              <Search size={15} strokeWidth={2.2} aria-hidden="true" />
+              <SearchIcon size={15} />
             </button>
           </form>
 
-          {/* Currency — iOS-style frosted segmented control (USD / EGP) */}
+          {/* Saved stays filter */}
+          <button
+            type="button"
+            className={`wl-saved-chip${showSaved ? " is-active" : ""}`}
+            aria-pressed={showSaved}
+            onClick={onToggleSaved}
+            title="Show saved stays"
+          >
+            <HeartIcon size={14} filled={showSaved || savedCount > 0} />
+            <span className="wl-saved-label">Saved</span>
+            <span className="wl-saved-count">{savedCount}</span>
+          </button>
+
+          {/* Currency — frosted segmented control (USD / EGP) */}
           <div
             className="wl-currency-switch"
             role="group"
@@ -95,7 +120,7 @@ export default function Navbar({
             aria-label="Toggle navigation"
             onClick={() => setOpen((v) => !v)}
           >
-            {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
+            {open ? <CloseIcon size={20} /> : <MenuIcon size={20} />}
           </button>
         </div>
       </div>
